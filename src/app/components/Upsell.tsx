@@ -9,14 +9,20 @@ export function Upsell() {
   const location = useLocation();
   const selectedPackage = location.state?.selectedPackage || 'sprint';
 
+  const packagePrices: Record<string, number> = { trot: 15, sprint: 39, gallop: 25 };
+  const packageNames: Record<string, string> = { trot: 'Trot Wash', sprint: 'Sprint Wash', gallop: 'Gallop Wash' };
+  const washPrice = packagePrices[selectedPackage] ?? 39;
+  const washLabel = packageNames[selectedPackage] ?? 'Single Wash';
+
   // Determine upsell based on package
   const isSprint = selectedPackage === 'sprint';
-  
+
   const upsell = isSprint
     ? {
         title: "Victory Breeze Air Freshener",
         description: "Complete your champion clean with our premium signature cabin scent. Keeps your ride smelling track-ready for weeks.",
         price: "$3.00",
+        priceValue: 3,
         icon: <Wind className="w-12 h-12 text-blue-400" strokeWidth={1.5} />,
         color: "from-blue-600 to-blue-800",
         features: ["Eliminates odors", "Signature long-lasting scent", "Sprayed directly on floor mats"]
@@ -25,16 +31,17 @@ export function Upsell() {
         title: "Ceramic Seal Coat",
         description: "Add an impenetrable layer of protection to your vehicle's paint. Defends against dirt, UV rays, and water spots.",
         price: "$5.00",
+        priceValue: 5,
         icon: <Shield className="w-12 h-12 text-amber-400" strokeWidth={1.5} />,
         color: "from-amber-600 to-[#FF6900]",
         features: ["Extreme water beading", "Mirror-like gloss finish", "Lasts up to 30 days"]
       };
 
   const handleAction = (accepted: boolean) => {
-    // Navigate to payment regardless of acceptance for now
-    // In a real app we would pass the modified price or cart
+    const total = washPrice + (accepted ? upsell.priceValue : 0);
+    const label = accepted ? `${washLabel} + ${upsell.title}` : washLabel;
     setTimeout(() => {
-      navigate('/payment');
+      navigate('/payment', { state: { amount: total, label } });
     }, 400);
   };
 
