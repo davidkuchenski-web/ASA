@@ -111,7 +111,7 @@ export function DigitalSign() {
               <img 
                 src={carTopView} 
                 alt="Vehicle Top View" 
-                className="h-[120%] object-contain opacity-90 drop-shadow-[0_0_50px_rgba(255,105,0,0.15)]" 
+                className="h-full object-contain opacity-90 drop-shadow-[0_0_50px_rgba(255,105,0,0.15)]"
               />
             </motion.div>
             
@@ -119,78 +119,62 @@ export function DigitalSign() {
             <div className="absolute inset-0 z-20 pointer-events-none">
               
               {/* Front Left (Good) */}
-              <motion.div 
-                animate={{ scale: [1, 1.02, 1] }} 
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} 
-                className="absolute top-[15%] left-[5%] flex items-center gap-6"
+              <motion.div
+                animate={{ scale: [1, 1.02, 1] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-[8%] left-[2%] bg-emerald-500/10 backdrop-blur-xl border-2 border-emerald-500/50 rounded-[2rem] p-5 shadow-[0_0_30px_rgba(16,185,129,0.2)] flex items-center gap-4"
               >
-                <div className="bg-emerald-500/10 backdrop-blur-xl border-2 border-emerald-500/50 rounded-[2rem] p-6 shadow-[0_0_30px_rgba(16,185,129,0.2)] flex items-center gap-6">
-                  <CheckCircle2 className="w-16 h-16 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
-                  <div className="text-left">
-                    <p className="text-2xl font-bold text-emerald-400 uppercase tracking-widest mb-1">Front Left</p>
-                    <p className="text-5xl font-black text-white">8/32"</p>
-                  </div>
+                <CheckCircle2 className="w-12 h-12 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                <div className="text-left">
+                  <p className="text-xl font-bold text-emerald-400 uppercase tracking-widest mb-1">Front Left</p>
+                  <p className="text-4xl font-black text-white">8/32"</p>
                 </div>
-                {/* Pointer Line */}
-                <div className="w-64 h-1 bg-gradient-to-r from-emerald-500/80 to-transparent rounded-full transform rotate-[35deg] origin-left translate-y-4"></div>
               </motion.div>
 
               {/* Front Right (Low/Danger) */}
-              <motion.div 
-                animate={{ 
+              <motion.div
+                animate={{
                   scale: [1, 1.05, 1],
                   boxShadow: ['0 0 20px rgba(239,68,68,0)', '0 0 50px rgba(239,68,68,0.4)', '0 0 20px rgba(239,68,68,0)']
-                }} 
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} 
-                className="absolute top-[15%] right-[5%] flex items-center gap-6 flex-row-reverse"
+                }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-[8%] right-[2%] bg-red-500/10 backdrop-blur-xl border-2 border-red-500/80 rounded-[2rem] p-5 shadow-[0_0_40px_rgba(239,68,68,0.4)] flex items-center gap-4 overflow-hidden"
               >
-                <div className="bg-red-500/10 backdrop-blur-xl border-2 border-red-500/80 rounded-[2rem] p-6 shadow-[0_0_40px_rgba(239,68,68,0.4)] flex items-center gap-6 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-red-500/10 animate-pulse pointer-events-none"></div>
-                  <div className="text-right">
-                    <p className="text-2xl font-bold text-red-400 uppercase tracking-widest mb-1 flex justify-end items-center gap-3">
-                      <span className="bg-red-500 text-white px-3 py-1 rounded-md text-sm animate-pulse">LOW</span>
-                      Front Right
-                    </p>
-                    <p className="text-5xl font-black text-white">2/32"</p>
-                  </div>
-                  <AlertTriangle className="w-16 h-16 text-red-500 drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]" />
+                <div className="absolute inset-0 bg-red-500/10 animate-pulse pointer-events-none"></div>
+                <div className="text-right">
+                  <p className="text-xl font-bold text-red-400 uppercase tracking-widest mb-1 flex justify-end items-center gap-2">
+                    <span className="bg-red-500 text-white px-2 py-0.5 rounded-md text-sm animate-pulse">LOW</span>
+                    Front Right
+                  </p>
+                  <p className="text-4xl font-black text-white">2/32"</p>
                 </div>
-                {/* Pointer Line */}
-                <div className="w-64 h-1 bg-gradient-to-l from-red-500/80 to-transparent rounded-full transform rotate-[35deg] origin-right translate-y-4"></div>
+                <AlertTriangle className="w-12 h-12 text-red-500 drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]" />
               </motion.div>
 
               {/* Rear Left (Good) */}
-              <motion.div 
-                animate={{ scale: [1, 1.02, 1] }} 
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }} 
-                className="absolute bottom-[15%] left-[5%] flex items-center gap-6"
+              <motion.div
+                animate={{ scale: [1, 1.02, 1] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute bottom-[8%] left-[2%] bg-emerald-500/10 backdrop-blur-xl border-2 border-emerald-500/50 rounded-[2rem] p-5 shadow-[0_0_30px_rgba(16,185,129,0.2)] flex items-center gap-4"
               >
-                <div className="bg-emerald-500/10 backdrop-blur-xl border-2 border-emerald-500/50 rounded-[2rem] p-6 shadow-[0_0_30px_rgba(16,185,129,0.2)] flex items-center gap-6">
-                  <CheckCircle2 className="w-16 h-16 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
-                  <div className="text-left">
-                    <p className="text-2xl font-bold text-emerald-400 uppercase tracking-widest mb-1">Rear Left</p>
-                    <p className="text-5xl font-black text-white">7/32"</p>
-                  </div>
+                <CheckCircle2 className="w-12 h-12 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                <div className="text-left">
+                  <p className="text-xl font-bold text-emerald-400 uppercase tracking-widest mb-1">Rear Left</p>
+                  <p className="text-4xl font-black text-white">7/32"</p>
                 </div>
-                {/* Pointer Line */}
-                <div className="w-64 h-1 bg-gradient-to-r from-emerald-500/80 to-transparent rounded-full transform -rotate-[35deg] origin-left -translate-y-4"></div>
               </motion.div>
 
               {/* Rear Right (Good) */}
-              <motion.div 
-                animate={{ scale: [1, 1.02, 1] }} 
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1.5 }} 
-                className="absolute bottom-[15%] right-[5%] flex items-center gap-6 flex-row-reverse"
+              <motion.div
+                animate={{ scale: [1, 1.02, 1] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                className="absolute bottom-[8%] right-[2%] bg-emerald-500/10 backdrop-blur-xl border-2 border-emerald-500/50 rounded-[2rem] p-5 shadow-[0_0_30px_rgba(16,185,129,0.2)] flex items-center gap-4"
               >
-                <div className="bg-emerald-500/10 backdrop-blur-xl border-2 border-emerald-500/50 rounded-[2rem] p-6 shadow-[0_0_30px_rgba(16,185,129,0.2)] flex items-center gap-6">
-                  <div className="text-right">
-                    <p className="text-2xl font-bold text-emerald-400 uppercase tracking-widest mb-1">Rear Right</p>
-                    <p className="text-5xl font-black text-white">7/32"</p>
-                  </div>
-                  <CheckCircle2 className="w-16 h-16 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                <div className="text-right">
+                  <p className="text-xl font-bold text-emerald-400 uppercase tracking-widest mb-1">Rear Right</p>
+                  <p className="text-4xl font-black text-white">7/32"</p>
                 </div>
-                {/* Pointer Line */}
-                <div className="w-64 h-1 bg-gradient-to-l from-emerald-500/80 to-transparent rounded-full transform -rotate-[35deg] origin-right -translate-y-4"></div>
+                <CheckCircle2 className="w-12 h-12 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
               </motion.div>
             </div>
           </div>
