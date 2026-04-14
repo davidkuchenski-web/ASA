@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import horseshoeImage from '../../imports/image-1.png';
 
 interface HorseshoeIconProps {
@@ -8,37 +7,6 @@ interface HorseshoeIconProps {
 }
 
 export function HorseshoeIcon({ className = "", size = 120, color = "currentColor" }: HorseshoeIconProps) {
-  // Load to base64 synchronously if cached, to prevent split-second broken image flickers on client-side navigation
-  const [persistentSrc, setPersistentSrc] = useState<string>(() => {
-    try {
-      return sessionStorage.getItem('horseshoe-icon-b64') || horseshoeImage;
-    } catch(e) {
-      return horseshoeImage;
-    }
-  });
-
-  useEffect(() => {
-    if (persistentSrc !== horseshoeImage && persistentSrc.startsWith('data:')) return;
-
-    let isMounted = true;
-    fetch(horseshoeImage)
-      .then(r => r.blob())
-      .then(blob => {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          if (isMounted && reader.result) {
-            const b64 = reader.result as string;
-            setPersistentSrc(b64);
-            try { sessionStorage.setItem('horseshoe-icon-b64', b64); } catch(e) {}
-          }
-        };
-        reader.readAsDataURL(blob);
-      })
-      .catch(() => {});
-
-    return () => { isMounted = false; };
-  }, []);
-
   const getColorFilter = () => {
     if (color === '#fde047' || color.toLowerCase().includes('yellow')) {
       return 'brightness(0) saturate(100%) invert(85%) sepia(100%) saturate(350%) hue-rotate(350deg) brightness(110%) contrast(105%)';
@@ -58,8 +26,8 @@ export function HorseshoeIcon({ className = "", size = 120, color = "currentColo
 
   return (
     <img
-      src={persistentSrc}
-      alt="" // Prevent raw text from showing up
+      src={horseshoeImage}
+      alt=""
       width={size}
       height={size}
       className={className}
