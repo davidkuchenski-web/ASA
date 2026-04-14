@@ -99,7 +99,7 @@ export function Welcome() {
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           />
           <span className="relative flex justify-center items-center gap-4 uppercase tracking-widest">
-            Touch to Begin
+            Say Hi to Dustin or Touch to Begin
             <Sparkles className="w-7 h-7" />
           </span>
         </motion.button>
