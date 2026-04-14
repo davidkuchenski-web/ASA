@@ -156,7 +156,7 @@ export function DigitalSign() {
                   <AlertTriangle className="w-16 h-16 text-red-500 drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]" />
                 </div>
                 {/* Pointer Line */}
-                <div className="w-64 h-1 bg-gradient-to-l from-red-500/80 to-transparent rounded-full transform -rotate-[35deg] origin-right translate-y-4"></div>
+                <div className="w-64 h-1 bg-gradient-to-l from-red-500/80 to-transparent rounded-full transform rotate-[35deg] origin-right translate-y-4"></div>
               </motion.div>
 
               {/* Rear Left (Good) */}
@@ -190,7 +190,7 @@ export function DigitalSign() {
                   <CheckCircle2 className="w-16 h-16 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
                 </div>
                 {/* Pointer Line */}
-                <div className="w-64 h-1 bg-gradient-to-l from-emerald-500/80 to-transparent rounded-full transform rotate-[35deg] origin-right -translate-y-4"></div>
+                <div className="w-64 h-1 bg-gradient-to-l from-emerald-500/80 to-transparent rounded-full transform -rotate-[35deg] origin-right -translate-y-4"></div>
               </motion.div>
             </div>
           </div>
