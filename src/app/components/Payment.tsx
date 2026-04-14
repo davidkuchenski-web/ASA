@@ -12,8 +12,10 @@ export function Payment() {
   const [success, setSuccess] = useState(false);
 
   const amount: number | undefined = location.state?.amount;
+  const regularAmount: number | undefined = location.state?.regularAmount;
   const label: string = location.state?.label ?? 'Total Due';
   const recurring: boolean = !!location.state?.recurring;
+  const renewalNote: string | undefined = location.state?.renewalNote;
   const amountDisplay = amount != null ? `$${amount.toFixed(2)}` : null;
 
   const simulatePayment = () => {
@@ -66,12 +68,20 @@ export function Payment() {
                 className="w-full bg-gradient-to-br from-[#FF6900]/15 via-amber-500/10 to-[#FF6900]/15 border-2 border-[#FF6900]/40 rounded-2xl px-6 py-4 shadow-[0_0_30px_rgba(255,105,0,0.2)] flex flex-col items-center"
               >
                 <p className="text-xs uppercase tracking-[0.25em] text-amber-300/90 font-bold mb-1">{label}</p>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-3xl font-bold text-white/80">$</span>
-                  <span className="text-6xl font-black text-white tracking-tight leading-none">{amount!.toFixed(2).split('.')[0]}</span>
-                  <span className="text-3xl font-bold text-white/80">.{amount!.toFixed(2).split('.')[1]}</span>
-                  {recurring && <span className="text-lg font-semibold text-amber-300/90 ml-2">/mo</span>}
+                <div className="flex items-baseline gap-2">
+                  {regularAmount != null && (
+                    <span className="text-2xl font-semibold text-white/50 line-through decoration-2 decoration-red-400/80">${regularAmount.toFixed(2)}</span>
+                  )}
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-3xl font-bold text-white/80">$</span>
+                    <span className="text-6xl font-black text-white tracking-tight leading-none">{amount!.toFixed(2).split('.')[0]}</span>
+                    <span className="text-3xl font-bold text-white/80">.{amount!.toFixed(2).split('.')[1]}</span>
+                  </div>
+                  {recurring && <span className="text-lg font-semibold text-amber-300/90 ml-1">/mo</span>}
                 </div>
+                {renewalNote && (
+                  <p className="text-[11px] uppercase tracking-widest text-amber-200/80 font-semibold mt-2">{renewalNote}</p>
+                )}
               </motion.div>
             )}
 

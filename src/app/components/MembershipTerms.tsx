@@ -11,7 +11,7 @@ export function MembershipTerms() {
 
   const handleContinue = () => {
     if (accepted) {
-      navigate('/payment', { state: { amount: 49, label: 'Unlimited Club Membership', recurring: true } });
+      navigate('/payment', { state: { amount: 9.99, regularAmount: 49, label: 'Unlimited Club — First Month', recurring: true, renewalNote: 'Then $49.00/mo' } });
     }
   };
 

@@ -146,8 +146,12 @@ export function Upgrade() {
                   </div>
                 </div>
                 <div className="text-right bg-white/20 backdrop-blur-md rounded-xl px-4 py-2 border border-white/30">
-                  <div className="text-amber-100 text-[10px] uppercase font-bold">Monthly Sub</div>
-                  <div className="text-3xl font-bold text-white leading-none">$49</div>
+                  <div className="text-amber-100 text-[10px] uppercase font-bold">First Month</div>
+                  <div className="flex items-baseline justify-end gap-2 leading-none">
+                    <span className="text-base font-semibold text-white/70 line-through decoration-2">$49</span>
+                    <span className="text-3xl font-bold text-white">$9.99</span>
+                  </div>
+                  <div className="text-amber-100/90 text-[9px] uppercase font-semibold tracking-wide mt-0.5">Then $49/mo</div>
                 </div>
               </div>
 
