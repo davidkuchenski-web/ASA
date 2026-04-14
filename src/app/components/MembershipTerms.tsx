@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 import { Logo } from './Logo';
 import { useState } from 'react';
 import { FileText, Check, ArrowLeft } from 'lucide-react';
@@ -7,11 +7,26 @@ import { AnimatedBackground } from './AnimatedBackground';
 
 export function MembershipTerms() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [accepted, setAccepted] = useState(false);
+
+  const selectedPackage: string = location.state?.selectedPackage || 'sprint';
+  const membershipPrices: Record<string, number> = { trot: 29.99, gallop: 39.99, sprint: 49 };
+  const membershipNames: Record<string, string> = { trot: 'Trot Club', gallop: 'Gallop Club', sprint: 'Unlimited Club' };
+  const regularAmount = membershipPrices[selectedPackage] ?? 49;
+  const tierName = membershipNames[selectedPackage] ?? 'Unlimited Club';
 
   const handleContinue = () => {
     if (accepted) {
-      navigate('/payment', { state: { amount: 9.99, regularAmount: 49, label: 'Unlimited Club — First Month', recurring: true, renewalNote: 'Then $49.00/mo' } });
+      navigate('/payment', {
+        state: {
+          amount: 9.99,
+          regularAmount,
+          label: `${tierName} — First Month`,
+          recurring: true,
+          renewalNote: `Then $${regularAmount.toFixed(2)}/mo`,
+        },
+      });
     }
   };
 

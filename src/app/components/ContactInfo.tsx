@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 import { Logo } from './Logo';
 import { useState } from 'react';
 import { Phone, CheckCircle2, Delete, ChevronRight, ArrowLeft } from 'lucide-react';
@@ -7,6 +7,8 @@ import { AnimatedBackground } from './AnimatedBackground';
 
 export function ContactInfo() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const selectedPackage = location.state?.selectedPackage;
   const [phone, setPhone] = useState('');
   
   // Mocked captured license plate
@@ -32,7 +34,7 @@ export function ContactInfo() {
   const handleSubmit = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     if (phone.length === 10) {
-      navigate('/terms');
+      navigate('/terms', { state: { selectedPackage } });
     }
   };
 

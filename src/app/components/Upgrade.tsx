@@ -12,11 +12,17 @@ export function Upgrade() {
 
   const selectedPackage = location.state?.selectedPackage || 'sprint';
 
+  const packagePrices: Record<string, number> = { trot: 15, sprint: 39, gallop: 25 };
+  const membershipPrices: Record<string, number> = { trot: 29.99, gallop: 39.99, sprint: 49 };
+  const singlePrice = packagePrices[selectedPackage] ?? 39;
+  const memberPrice = membershipPrices[selectedPackage] ?? 49;
+  const monthlySavings = Math.max(0, Math.floor(singlePrice * 4 - memberPrice));
+
   const handleSelect = (option: 'single' | 'membership') => {
     setSelectedOption(option);
     setTimeout(() => {
       if (option === 'membership') {
-        navigate('/contact');
+        navigate('/contact', { state: { selectedPackage } });
       } else {
         navigate('/upsell', { state: { selectedPackage } });
       }
@@ -84,7 +90,7 @@ export function Upgrade() {
                 </div>
                 <div className="text-right bg-slate-900/60 rounded-xl px-4 py-2 border border-slate-700">
                   <div className="text-slate-400 text-[10px] uppercase font-semibold">Pay Once</div>
-                  <div className="text-3xl font-bold text-white leading-none">$39</div>
+                  <div className="text-3xl font-bold text-white leading-none">${singlePrice}</div>
                 </div>
               </div>
 
@@ -148,10 +154,10 @@ export function Upgrade() {
                 <div className="text-right bg-white/20 backdrop-blur-md rounded-xl px-4 py-2 border border-white/30">
                   <div className="text-amber-100 text-[10px] uppercase font-bold">First Month</div>
                   <div className="flex items-baseline justify-end gap-2 leading-none">
-                    <span className="text-base font-semibold text-white/70 line-through decoration-2">$49</span>
+                    <span className="text-base font-semibold text-white/70 line-through decoration-2">${memberPrice}</span>
                     <span className="text-3xl font-bold text-white">$9.99</span>
                   </div>
-                  <div className="text-amber-100/90 text-[9px] uppercase font-semibold tracking-wide mt-0.5">Then $49/mo</div>
+                  <div className="text-amber-100/90 text-[9px] uppercase font-semibold tracking-wide mt-0.5">Then ${memberPrice}/mo</div>
                 </div>
               </div>
 
@@ -162,7 +168,7 @@ export function Upgrade() {
                 <div className="bg-black/20 rounded-lg px-3 py-2 w-fit">
                   <div className="text-white font-bold text-xs flex items-center gap-1.5">
                     <TrendingUp className="w-4 h-4 text-green-400" />
-                    <span>Save $263+ monthly at 2x weekly</span>
+                    <span>Save ${monthlySavings}+ a month washing only once a week!</span>
                   </div>
                 </div>
               </div>
