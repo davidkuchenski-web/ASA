@@ -1,4 +1,5 @@
-import horseshoeImage from '../../imports/image-1.png';
+import horseshoeImage from 'figma:asset/image-12.png';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface HorseshoeIconProps {
   className?: string;
@@ -25,7 +26,7 @@ export function HorseshoeIcon({ className = "", size = 120, color = "currentColo
   };
 
   return (
-    <img
+    <ImageWithFallback
       src={horseshoeImage}
       alt=""
       width={size}

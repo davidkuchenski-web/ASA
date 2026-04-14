@@ -1,4 +1,5 @@
-import logoImage from '../../imports/image-1.png';
+import logoImage from 'figma:asset/image-1.png';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface LogoProps {
   className?: string;
@@ -19,7 +20,7 @@ export function Logo({ className = "", size = 'lg' }: LogoProps) {
         Using the original high-res PNG logo image rather than 
         attempting to recreate it with SVGs or text.
       */}
-      <img 
+      <ImageWithFallback 
         src={logoImage} 
         alt="DERBY Express" 
         width={sizeClasses[size]} 

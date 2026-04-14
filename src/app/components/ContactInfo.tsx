@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { useNavigate } from 'react-router';
 import { Logo } from './Logo';
 import { useState } from 'react';
-import { Phone, CheckCircle2, Delete, ChevronRight, ArrowLeft } from 'lucide-react';
+import { Phone, CircleCheckBig, Delete, ChevronRight, ArrowLeft } from 'lucide-react';
 import { AnimatedBackground } from './AnimatedBackground';
 
 export function ContactInfo() {
@@ -91,13 +91,13 @@ export function ContactInfo() {
                 <div className="absolute top-0 left-0 w-2 h-full bg-[#FF6900]"></div>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-slate-400 text-sm uppercase tracking-wider font-semibold">Vehicle Detected</span>
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                  <CircleCheckBig className="w-5 h-5 text-emerald-500" />
                 </div>
                 <div className="text-5xl font-mono font-bold text-white tracking-widest mt-2 mb-3">
                   {capturedPlate}
                 </div>
                 <p className="text-emerald-400 text-sm flex items-center justify-center gap-2 bg-emerald-500/10 px-4 py-1.5 rounded-full w-fit">
-                  <CheckCircle2 className="w-4 h-4" /> License plate successfully scanned
+                  <CircleCheckBig className="w-4 h-4" /> License plate successfully scanned
                 </p>
               </motion.div>
 
@@ -110,7 +110,7 @@ export function ContactInfo() {
               >
                 <div className="flex-shrink-0 mt-1">
                   <div className="w-7 h-7 rounded-md bg-[#FF6900] flex items-center justify-center shadow-[0_0_10px_rgba(255,105,0,0.5)]">
-                    <CheckCircle2 className="w-5 h-5 text-white" strokeWidth={3} />
+                    <CircleCheckBig className="w-5 h-5 text-white" strokeWidth={3} />
                   </div>
                 </div>
                 <div>

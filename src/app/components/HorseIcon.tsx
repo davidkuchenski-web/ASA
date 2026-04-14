@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
-import horseImage from '../../imports/image.png';
+import horseImage from 'figma:asset/image-12.png';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface HorseIconProps {
   className?: string;
@@ -42,7 +43,7 @@ export function HorseIcon({ className = "w-32 h-32", animate = false, color = "w
   const filter = getColorFilter(effectiveColor);
 
   const imgContent = (
-    <img
+    <ImageWithFallback
       src={horseImage}
       alt=""
       className={className}

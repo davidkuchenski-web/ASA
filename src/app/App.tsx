@@ -1,6 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, Component, ReactNode } from "react";
 import { RouterProvider } from "react-router";
 import { router } from "./routes";
+
+class ErrorBoundary extends Component<{children: ReactNode}, {hasError: boolean, error: Error | null}> {
+  constructor(props: {children: ReactNode}) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <div className="text-white p-10 z-50 fixed bg-red-900 w-full h-full">
+        <h1>Something went wrong.</h1>
+        <pre>{this.state.error?.toString()}</pre>
+        <pre>{this.state.error?.stack}</pre>
+      </div>;
+    }
+    return this.props.children;
+  }
+}
 
 export default function App() {
   const [scale, setScale] = useState(1);
@@ -8,7 +30,7 @@ export default function App() {
 
   useEffect(() => {
     const handleResize = () => {
-      const isSign = window.location.hash.includes("/digital-sign");
+      const isSign = window.location.pathname.includes("/digital-sign") || window.location.hash.includes("/digital-sign");
       setIsDigitalSign(isSign);
       
       const targetWidth = 1080;
@@ -33,6 +55,7 @@ export default function App() {
   const targetHeight = isDigitalSign ? 1920 : 700;
 
   return (
+    <ErrorBoundary>
     <div
       className="flex items-center justify-center bg-black overflow-hidden select-none"
       style={{
@@ -65,5 +88,6 @@ export default function App() {
         </div>
       </div>
     </div>
+    </ErrorBoundary>
   );
 }
