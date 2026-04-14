@@ -1,6 +1,6 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import horseImage from 'figma:asset/image-12.png';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import horseImage from '../../imports/image.png';
 
 interface HorseIconProps {
   className?: string;
@@ -9,6 +9,37 @@ interface HorseIconProps {
 }
 
 export function HorseIcon({ className = "w-32 h-32", animate = false, color = "white" }: HorseIconProps) {
+  // Synchronous cache check to completely avoid broken-image flickers on the second loop
+  const [persistentSrc, setPersistentSrc] = useState<string>(() => {
+    try {
+      return sessionStorage.getItem('horse-icon-b64') || horseImage;
+    } catch(e) {
+      return horseImage;
+    }
+  });
+
+  useEffect(() => {
+    if (persistentSrc !== horseImage && persistentSrc.startsWith('data:')) return;
+
+    let isMounted = true;
+    fetch(horseImage)
+      .then(r => r.blob())
+      .then(blob => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          if (isMounted && reader.result) {
+            const b64 = reader.result as string;
+            setPersistentSrc(b64);
+            try { sessionStorage.setItem('horse-icon-b64', b64); } catch(e) {}
+          }
+        };
+        reader.readAsDataURL(blob);
+      })
+      .catch(() => {});
+
+    return () => { isMounted = false; };
+  }, []);
+
   const getColorFilter = (c: string) => {
     // Sprint Package (Gold / Yellow: #fde047)
     if (c === '#fde047' || c.toLowerCase().includes('yellow')) {
@@ -43,9 +74,9 @@ export function HorseIcon({ className = "w-32 h-32", animate = false, color = "w
   const filter = getColorFilter(effectiveColor);
 
   const imgContent = (
-    <ImageWithFallback
-      src={horseImage}
-      alt=""
+    <img
+      src={persistentSrc}
+      alt="" // Prevent raw text from showing up
       className={className}
       style={{
         filter,

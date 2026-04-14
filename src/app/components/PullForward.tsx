@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { useNavigate } from 'react-router';
 import { Logo } from './Logo';
-import { ArrowRight, CircleCheckBig, Sparkles } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Sparkles } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { AnimatedBackground } from './AnimatedBackground';
 
@@ -72,7 +72,7 @@ export function PullForward() {
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               className="rounded-full bg-emerald-500/10"
             >
-              <CircleCheckBig className="w-20 h-20 text-emerald-400 bg-slate-900 rounded-full" strokeWidth={2.5} />
+              <CheckCircle2 className="w-20 h-20 text-emerald-400 bg-slate-900 rounded-full" strokeWidth={2.5} />
             </motion.div>
           </motion.div>
 

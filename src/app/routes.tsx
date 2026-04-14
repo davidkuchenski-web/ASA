@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createHashRouter } from "react-router";
 import { Welcome } from "./components/Welcome";
 import { WashMenu } from "./components/WashMenu";
 import { Upgrade } from "./components/Upgrade";
@@ -10,7 +10,7 @@ import { PullForward } from "./components/PullForward";
 import { MemberWelcome } from "./components/MemberWelcome";
 import { DigitalSign } from "./components/DigitalSign";
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: "/",
     Component: Welcome,

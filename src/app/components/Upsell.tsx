@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { useNavigate, useLocation } from 'react-router';
 import { Logo } from './Logo';
-import { Shield, Sparkles, Wind, ArrowLeft, CircleCheck, CircleX } from 'lucide-react';
+import { Shield, Sparkles, Wind, ArrowLeft, CheckCircle2, XCircle } from 'lucide-react';
 import { AnimatedBackground } from './AnimatedBackground';
 
 export function Upsell() {
@@ -102,7 +102,7 @@ export function Upsell() {
               <ul className="space-y-3">
                 {upsell.features.map((feature, idx) => (
                   <li key={idx} className="flex items-center text-slate-200 text-lg">
-                    <CircleCheck className="w-5 h-5 text-emerald-400 mr-3 flex-shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-emerald-400 mr-3 flex-shrink-0" />
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -116,7 +116,7 @@ export function Upsell() {
                 onClick={() => handleAction(true)}
                 className="w-full bg-gradient-to-r from-amber-500 to-[#FF6900] active:from-amber-400 active:to-[#ff7c21] text-white py-5 rounded-2xl font-bold text-xl shadow-xl flex items-center justify-center gap-3 transition-colors"
               >
-                <CircleCheck className="w-6 h-6" />
+                <CheckCircle2 className="w-6 h-6" />
                 Add to Wash
               </motion.button>
               
@@ -125,7 +125,7 @@ export function Upsell() {
                 onClick={() => handleAction(false)}
                 className="w-full bg-slate-700/50 active:bg-slate-700 border border-slate-600 text-slate-300 py-5 rounded-2xl font-bold text-xl shadow-md flex items-center justify-center gap-3 transition-colors"
               >
-                <CircleX className="w-6 h-6" />
+                <XCircle className="w-6 h-6" />
                 No Thanks
               </motion.button>
             </div>

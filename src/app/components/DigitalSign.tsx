@@ -1,8 +1,8 @@
 import { motion } from 'motion/react';
 import { Logo } from './Logo';
-import { ShieldAlert, CircleCheck, TriangleAlert, Calendar, Sparkles } from 'lucide-react';
+import { ShieldAlert, CheckCircle2, AlertTriangle, Calendar, Sparkles } from 'lucide-react';
 import { AnimatedBackground } from './AnimatedBackground';
-import carTopView from 'figma:asset/—Pngtree—top_view_of_a_sleek_20979523.png';
+import carTopView from '../../imports/—Pngtree—top_view_of_a_sleek_20979523.png';
 
 export function DigitalSign() {
   return (
@@ -125,7 +125,7 @@ export function DigitalSign() {
                 className="absolute top-[15%] left-[5%] flex items-center gap-6"
               >
                 <div className="bg-emerald-500/10 backdrop-blur-xl border-2 border-emerald-500/50 rounded-[2rem] p-6 shadow-[0_0_30px_rgba(16,185,129,0.2)] flex items-center gap-6">
-                  <CircleCheck className="w-16 h-16 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                  <CheckCircle2 className="w-16 h-16 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
                   <div className="text-left">
                     <p className="text-2xl font-bold text-emerald-400 uppercase tracking-widest mb-1">Front Left</p>
                     <p className="text-5xl font-black text-white">8/32"</p>
@@ -153,7 +153,7 @@ export function DigitalSign() {
                     </p>
                     <p className="text-5xl font-black text-white">2/32"</p>
                   </div>
-                  <TriangleAlert className="w-16 h-16 text-red-500 drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]" />
+                  <AlertTriangle className="w-16 h-16 text-red-500 drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]" />
                 </div>
                 {/* Pointer Line */}
                 <div className="w-64 h-1 bg-gradient-to-l from-red-500/80 to-transparent rounded-full transform -rotate-[35deg] origin-right translate-y-4"></div>
@@ -166,7 +166,7 @@ export function DigitalSign() {
                 className="absolute bottom-[15%] left-[5%] flex items-center gap-6"
               >
                 <div className="bg-emerald-500/10 backdrop-blur-xl border-2 border-emerald-500/50 rounded-[2rem] p-6 shadow-[0_0_30px_rgba(16,185,129,0.2)] flex items-center gap-6">
-                  <CircleCheck className="w-16 h-16 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                  <CheckCircle2 className="w-16 h-16 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
                   <div className="text-left">
                     <p className="text-2xl font-bold text-emerald-400 uppercase tracking-widest mb-1">Rear Left</p>
                     <p className="text-5xl font-black text-white">7/32"</p>
@@ -187,7 +187,7 @@ export function DigitalSign() {
                     <p className="text-2xl font-bold text-emerald-400 uppercase tracking-widest mb-1">Rear Right</p>
                     <p className="text-5xl font-black text-white">7/32"</p>
                   </div>
-                  <CircleCheck className="w-16 h-16 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                  <CheckCircle2 className="w-16 h-16 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
                 </div>
                 {/* Pointer Line */}
                 <div className="w-64 h-1 bg-gradient-to-l from-emerald-500/80 to-transparent rounded-full transform rotate-[35deg] origin-right -translate-y-4"></div>
