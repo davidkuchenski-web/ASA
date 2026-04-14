@@ -1,0 +1,229 @@
+import { motion } from 'motion/react';
+import { Logo } from './Logo';
+import { ShieldAlert, CheckCircle2, AlertTriangle, Calendar, Sparkles } from 'lucide-react';
+import { AnimatedBackground } from './AnimatedBackground';
+import carTopView from '../../imports/—Pngtree—top_view_of_a_sleek_20979523.png';
+
+export function DigitalSign() {
+  return (
+    <div className="w-full h-screen bg-black overflow-y-auto overflow-x-hidden flex justify-center">
+      {/* 1080x1920 Fixed Resolution Container for 49" Portrait Display */}
+      <div className="w-[1080px] min-h-[1920px] h-[1920px] bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 relative overflow-hidden flex flex-col p-12 gap-8 shrink-0 shadow-2xl z-0 select-none">
+        
+        <AnimatedBackground />
+
+        {/* TOP: Header & Welcome */}
+        <div className="relative z-10 flex justify-between items-center w-full px-4 pt-6">
+          <Logo size="lg" />
+          <div className="text-right">
+            <h1 className="text-5xl font-black text-white tracking-wider uppercase drop-shadow-md">Welcome Back</h1>
+            <h2 className="text-6xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-[#FF6900] font-bold mt-2 drop-shadow-lg">Dustin</h2>
+          </div>
+        </div>
+
+        {/* VEHICLE INFO */}
+        <div className="relative z-10 bg-slate-800/80 backdrop-blur-xl rounded-[3rem] p-12 border border-slate-700/50 flex justify-between items-center shadow-2xl mt-4">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-slate-700 via-slate-500 to-slate-700"></div>
+          <div className="flex flex-col">
+            <p className="text-3xl text-slate-400 font-medium uppercase tracking-widest mb-3">Vehicle Identified</p>
+            <p className="text-6xl font-black text-white tracking-tight drop-shadow-lg">2023 Black Ford F-150</p>
+          </div>
+          
+          {/* License Plate */}
+          <div className="bg-white rounded-[2rem] border-[8px] border-slate-300 px-12 py-6 shadow-inner flex flex-col items-center justify-center relative overflow-hidden shrink-0">
+            {/* Plate Bolts */}
+            <div className="absolute top-3 left-0 right-0 flex justify-between px-8">
+              <span className="w-5 h-5 rounded-full bg-slate-400 shadow-inner"></span>
+              <span className="w-5 h-5 rounded-full bg-slate-400 shadow-inner"></span>
+            </div>
+            <div className="absolute bottom-3 left-0 right-0 flex justify-between px-8">
+              <span className="w-5 h-5 rounded-full bg-slate-400 shadow-inner"></span>
+              <span className="w-5 h-5 rounded-full bg-slate-400 shadow-inner"></span>
+            </div>
+            {/* Plate Text */}
+            <p className="text-2xl font-bold text-red-600 tracking-[0.3em] uppercase mb-1">Kentucky</p>
+            <p className="text-7xl font-black text-slate-800 tracking-[0.15em] font-mono mt-1">DRBY-1</p>
+          </div>
+        </div>
+
+        {/* SERVICE STATUS */}
+        <div className="relative z-10 grid grid-cols-2 gap-8 w-full mt-2">
+          {/* Last Wash Card */}
+          <div className="bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-xl rounded-[3rem] p-10 border border-slate-700 shadow-2xl flex flex-col items-center justify-center text-center">
+            <Calendar className="w-20 h-20 text-slate-400 mb-6" strokeWidth={1.5} />
+            <p className="text-3xl text-slate-300 font-medium mb-3">Service History</p>
+            <p className="text-4xl font-bold text-white leading-snug">
+              Your last wash was
+              <span className="text-6xl text-amber-500 block mt-4 font-black drop-shadow-md">12 Days Ago</span>
+            </p>
+          </div>
+          
+          {/* Recommendation Card */}
+          <div className="bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-xl rounded-[3rem] p-10 border border-slate-700 shadow-2xl flex flex-col items-center justify-center text-center">
+            <ShieldAlert className="w-20 h-20 text-blue-400 mb-6" strokeWidth={1.5} />
+            <p className="text-3xl text-slate-300 font-medium mb-3">Recommendation</p>
+            <p className="text-4xl font-bold text-white leading-snug">
+              Your vehicle has never used our
+              <span className="text-6xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 block mt-4 font-black drop-shadow-md">Ceramic Shield</span>
+            </p>
+          </div>
+        </div>
+
+        {/* SAVINGS BANNER */}
+        <div className="relative z-10 bg-gradient-to-r from-emerald-900/80 via-emerald-800/90 to-emerald-900/80 backdrop-blur-xl rounded-[3rem] p-12 border border-emerald-600/50 shadow-[0_0_50px_rgba(16,185,129,0.15)] flex flex-col items-center mt-2">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-400/20 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-600/20 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+          
+          <h3 className="text-4xl text-emerald-400 font-bold uppercase tracking-widest text-center mb-10 z-10">
+            With a Membership, you would have saved:
+          </h3>
+          
+          <div className="flex justify-around items-center w-full z-10">
+            <div className="flex flex-col items-center">
+              <p className="text-3xl text-emerald-200/80 font-medium uppercase tracking-widest mb-4">Last 30 Days</p>
+              <p className="text-[6rem] font-black text-white tracking-tight drop-shadow-xl leading-none">$35.00</p>
+            </div>
+            <div className="w-1 h-32 bg-emerald-700/50 rounded-full"></div>
+            <div className="flex flex-col items-center">
+              <p className="text-3xl text-emerald-200/80 font-medium uppercase tracking-widest mb-4">Previous 90 Days</p>
+              <p className="text-[6rem] font-black text-white tracking-tight drop-shadow-xl leading-none">$105.00</p>
+            </div>
+          </div>
+        </div>
+
+        {/* TIRE TREAD STATUS */}
+        <div className="relative z-10 flex-1 bg-gradient-to-br from-slate-800/90 via-slate-900/95 to-slate-950/90 backdrop-blur-2xl rounded-[3rem] border border-slate-700/80 p-12 flex flex-col overflow-hidden shadow-2xl mt-2 min-h-[600px]">
+          <div className="absolute inset-0 bg-gradient-to-b from-[#FF6900]/5 to-transparent pointer-events-none"></div>
+          
+          <h2 className="text-5xl font-black text-white tracking-widest uppercase text-center mb-8 relative z-10 drop-shadow-lg">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-[#FF6900]">Tire Tread</span> Analysis
+          </h2>
+
+          <div className="relative flex-1 w-full flex items-center justify-center mt-4">
+            
+            {/* The Top-Down Car Image */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }}
+              className="absolute inset-0 flex justify-center items-center pointer-events-none"
+            >
+              <img 
+                src={carTopView} 
+                alt="Vehicle Top View" 
+                className="h-[120%] object-contain opacity-90 drop-shadow-[0_0_50px_rgba(255,105,0,0.15)]" 
+              />
+            </motion.div>
+            
+            {/* Tire Indicators Overlay */}
+            <div className="absolute inset-0 z-20 pointer-events-none">
+              
+              {/* Front Left (Good) */}
+              <motion.div 
+                animate={{ scale: [1, 1.02, 1] }} 
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} 
+                className="absolute top-[15%] left-[5%] flex items-center gap-6"
+              >
+                <div className="bg-emerald-500/10 backdrop-blur-xl border-2 border-emerald-500/50 rounded-[2rem] p-6 shadow-[0_0_30px_rgba(16,185,129,0.2)] flex items-center gap-6">
+                  <CheckCircle2 className="w-16 h-16 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                  <div className="text-left">
+                    <p className="text-2xl font-bold text-emerald-400 uppercase tracking-widest mb-1">Front Left</p>
+                    <p className="text-5xl font-black text-white">8/32"</p>
+                  </div>
+                </div>
+                {/* Pointer Line */}
+                <div className="w-32 h-1 bg-gradient-to-r from-emerald-500/50 to-transparent rounded-full transform rotate-[25deg] origin-left translate-y-8"></div>
+              </motion.div>
+
+              {/* Front Right (Low/Danger) */}
+              <motion.div 
+                animate={{ 
+                  scale: [1, 1.05, 1],
+                  boxShadow: ['0 0 20px rgba(239,68,68,0)', '0 0 50px rgba(239,68,68,0.4)', '0 0 20px rgba(239,68,68,0)']
+                }} 
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} 
+                className="absolute top-[15%] right-[5%] flex items-center gap-6 flex-row-reverse"
+              >
+                <div className="bg-red-500/10 backdrop-blur-xl border-2 border-red-500/80 rounded-[2rem] p-6 shadow-[0_0_40px_rgba(239,68,68,0.4)] flex items-center gap-6 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-red-500/10 animate-pulse pointer-events-none"></div>
+                  <div className="text-right">
+                    <p className="text-2xl font-bold text-red-400 uppercase tracking-widest mb-1 flex justify-end items-center gap-3">
+                      <span className="bg-red-500 text-white px-3 py-1 rounded-md text-sm animate-pulse">LOW</span>
+                      Front Right
+                    </p>
+                    <p className="text-5xl font-black text-white">2/32"</p>
+                  </div>
+                  <AlertTriangle className="w-16 h-16 text-red-500 drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]" />
+                </div>
+                {/* Pointer Line */}
+                <div className="w-32 h-1 bg-gradient-to-l from-red-500/80 to-transparent rounded-full transform -rotate-[25deg] origin-right translate-y-8"></div>
+              </motion.div>
+
+              {/* Rear Left (Good) */}
+              <motion.div 
+                animate={{ scale: [1, 1.02, 1] }} 
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }} 
+                className="absolute bottom-[15%] left-[5%] flex items-center gap-6"
+              >
+                <div className="bg-emerald-500/10 backdrop-blur-xl border-2 border-emerald-500/50 rounded-[2rem] p-6 shadow-[0_0_30px_rgba(16,185,129,0.2)] flex items-center gap-6">
+                  <CheckCircle2 className="w-16 h-16 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                  <div className="text-left">
+                    <p className="text-2xl font-bold text-emerald-400 uppercase tracking-widest mb-1">Rear Left</p>
+                    <p className="text-5xl font-black text-white">7/32"</p>
+                  </div>
+                </div>
+                {/* Pointer Line */}
+                <div className="w-32 h-1 bg-gradient-to-r from-emerald-500/50 to-transparent rounded-full transform -rotate-[25deg] origin-left -translate-y-8"></div>
+              </motion.div>
+
+              {/* Rear Right (Good) */}
+              <motion.div 
+                animate={{ scale: [1, 1.02, 1] }} 
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1.5 }} 
+                className="absolute bottom-[15%] right-[5%] flex items-center gap-6 flex-row-reverse"
+              >
+                <div className="bg-emerald-500/10 backdrop-blur-xl border-2 border-emerald-500/50 rounded-[2rem] p-6 shadow-[0_0_30px_rgba(16,185,129,0.2)] flex items-center gap-6">
+                  <div className="text-right">
+                    <p className="text-2xl font-bold text-emerald-400 uppercase tracking-widest mb-1">Rear Right</p>
+                    <p className="text-5xl font-black text-white">7/32"</p>
+                  </div>
+                  <CheckCircle2 className="w-16 h-16 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                </div>
+                {/* Pointer Line */}
+                <div className="w-32 h-1 bg-gradient-to-l from-emerald-500/50 to-transparent rounded-full transform rotate-[25deg] origin-right -translate-y-8"></div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+
+        {/* BOTTOM ANIMATED BANNER */}
+        <motion.div 
+          animate={{ 
+            backgroundColor: ['rgba(255,105,0,0.85)', 'rgba(245,158,11,0.85)', 'rgba(255,105,0,0.85)']
+          }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="relative z-10 w-full rounded-[3rem] py-10 px-8 border-2 border-amber-300/50 shadow-[0_0_60px_rgba(255,105,0,0.5)] flex items-center justify-center gap-8 mt-2 overflow-hidden shrink-0"
+        >
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"
+            animate={{ x: ['-200%', '200%'] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          />
+          
+          <motion.div animate={{ rotate: 360, scale: [1, 1.2, 1] }} transition={{ duration: 4, repeat: Infinity, ease: "linear" }}>
+            <Sparkles className="w-20 h-20 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]" />
+          </motion.div>
+          
+          <h1 className="text-5xl font-black text-white uppercase tracking-widest text-center drop-shadow-xl z-10">
+            Ask Dustin to play a game & <span className="text-amber-200">WIN BIG!</span>
+          </h1>
+          
+          <motion.div animate={{ rotate: -360, scale: [1, 1.2, 1] }} transition={{ duration: 4, repeat: Infinity, ease: "linear" }}>
+            <Sparkles className="w-20 h-20 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]" />
+          </motion.div>
+        </motion.div>
+
+      </div>
+    </div>
+  );
+}
