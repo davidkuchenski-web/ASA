@@ -34,7 +34,7 @@ export function DigitalSign() {
     >
       {/* HEADER */}
       <div className="relative z-10 flex justify-between items-center w-full px-2">
-        <Logo size="lg" />
+        <Logo size="xl" />
         <div className="text-right flex flex-col items-end">
           <h1 className="text-5xl font-black text-[#FF6900] tracking-widest uppercase">Welcome</h1>
           <h2 className="text-6xl font-black text-[#FF6900] uppercase tracking-wider">Back</h2>
@@ -60,13 +60,13 @@ export function DigitalSign() {
         <div className={`${cardClass} p-8 flex flex-col items-center justify-center text-center`}>
           <Calendar className="w-14 h-14 text-slate-400 mb-3" strokeWidth={1.5} />
           <p className="text-2xl text-slate-400 font-medium uppercase tracking-widest mb-2">Last Wash</p>
-          <p className="text-5xl font-black text-amber-400 leading-tight">12 Days Ago</p>
+          <p className="text-5xl font-black text-[#FF6900] leading-tight">12 Days Ago</p>
         </div>
 
         <div className={`${cardClass} p-8 flex flex-col items-center justify-center text-center`}>
           <Shield className="w-14 h-14 text-slate-400 mb-3" strokeWidth={1.5} />
           <p className="text-2xl text-slate-400 font-medium uppercase tracking-widest mb-2">Recommended</p>
-          <p className="text-5xl font-black text-amber-400 leading-tight">Ceramic Shield</p>
+          <p className="text-5xl font-black text-[#FF6900] leading-tight">Ceramic Shield</p>
         </div>
       </div>
 
@@ -91,7 +91,7 @@ export function DigitalSign() {
       {/* TIRE TREAD */}
       <div className={`${cardClass} flex-1 p-8 flex flex-col overflow-hidden min-h-0`}>
         <h2 className="text-4xl font-black text-white tracking-widest uppercase text-center mb-6">
-          <span className="text-amber-400">Tire Tread</span> Analysis
+          <span className="text-[#FF6900]">Tire Tread</span> Analysis
         </h2>
 
         <div className="relative flex-1 w-full flex items-center justify-center">
