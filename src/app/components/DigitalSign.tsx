@@ -42,8 +42,13 @@ export function DigitalSign() {
   return (
     <div
       className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 overflow-hidden flex flex-col p-8 gap-4 shadow-2xl select-none"
-      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, width: '100%', height: '100%' }}
+      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, width: '100%', height: '100%', border: '20px solid yellow', boxSizing: 'border-box' }}
     >
+      {/* Edge markers to show viewport bounds */}
+      <div style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '40px', background: 'cyan', color: 'black', fontWeight: 'bold', fontSize: '20px', textAlign: 'center', zIndex: 9999 }}>TOP EDGE — {debug.w}×{debug.h} fs={debug.fs}</div>
+      <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, height: '40px', background: 'magenta', color: 'white', fontWeight: 'bold', fontSize: '20px', textAlign: 'center', zIndex: 9999 }}>BOTTOM EDGE</div>
+      <div style={{ position: 'fixed', top: 0, bottom: 0, left: 0, width: '20px', background: 'lime', zIndex: 9999 }} />
+      <div style={{ position: 'fixed', top: 0, bottom: 0, right: 0, width: '20px', background: 'orange', zIndex: 9999 }} />
         <AnimatedBackground />
 
         {/* TOP: Header & Welcome */}
