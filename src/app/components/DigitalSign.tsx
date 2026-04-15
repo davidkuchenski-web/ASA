@@ -1,12 +1,36 @@
 import { motion } from 'motion/react';
+import { useEffect, useState } from 'react';
 import { Logo } from './Logo';
 import { ShieldAlert, CheckCircle2, AlertTriangle, Calendar, Sparkles } from 'lucide-react';
 import { AnimatedBackground } from './AnimatedBackground';
 import carTopView from '../../imports/—Pngtree—top_view_of_a_sleek_20979523.png';
 
 export function DigitalSign() {
+  const [debug, setDebug] = useState({ w: 0, h: 0, fs: 0 });
+
+  useEffect(() => {
+    const apply = () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      // Design is 1080x1920. Default base = 16px. Scale so 1rem fits both dimensions.
+      const fs = Math.min(w / 1080, h / 1920) * 16;
+      document.documentElement.style.fontSize = `${fs}px`;
+      setDebug({ w, h, fs: Math.round(fs * 100) / 100 });
+    };
+    apply();
+    window.addEventListener('resize', apply);
+    return () => {
+      window.removeEventListener('resize', apply);
+      document.documentElement.style.fontSize = '';
+    };
+  }, []);
+
   return (
     <div className="w-screen h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 relative overflow-hidden flex flex-col p-8 gap-4 shadow-2xl z-0 select-none">
+      {/* TEMP DEBUG OVERLAY — viewport info */}
+      <div style={{ position: 'fixed', top: 4, left: 4, zIndex: 9999, background: 'lime', color: 'black', padding: '4px 8px', fontFamily: 'monospace', fontSize: '14px', fontWeight: 'bold' }}>
+        {debug.w} × {debug.h} | fs={debug.fs}px
+      </div>
         
         <AnimatedBackground />
 
