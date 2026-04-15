@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, digital-sign-legacy]
   workflow_dispatch:
 
 permissions:
@@ -21,20 +21,47 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      # --- Main kiosk app (Tailwind v4) ---
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main-app
 
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
-      - run: npm ci
+      - name: Build main kiosk
+        working-directory: main-app
+        run: |
+          npm ci
+          npm run build
 
-      - run: npm run build
+      # --- Digital sign legacy build (Tailwind v3, webOS 6 compatible) ---
+      - name: Checkout legacy sign branch
+        uses: actions/checkout@v4
+        with:
+          ref: digital-sign-legacy
+          path: sign-app
+
+      - name: Build digital sign
+        working-directory: sign-app
+        run: |
+          npm ci
+          npm run build
+
+      # --- Combine outputs: main at /, sign at /sign/ ---
+      - name: Assemble deploy directory
+        run: |
+          mkdir -p deploy
+          cp -R main-app/dist/* deploy/
+          mkdir -p deploy/sign
+          cp -R sign-app/dist/* deploy/sign/
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: deploy
 
       - id: deployment
         uses: actions/deploy-pages@v4
