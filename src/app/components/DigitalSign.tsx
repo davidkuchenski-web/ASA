@@ -21,18 +21,14 @@ export function DigitalSign() {
   }, []);
 
   return (
-    <div className="relative w-screen h-screen bg-black overflow-hidden">
-      {/* 1080x1920 portrait design scaled to fit viewport */}
+    <div className="w-screen h-screen bg-black overflow-hidden flex items-center justify-center">
+      {/* 1080x1920 portrait design — CSS zoom resizes the layout box to fit */}
       <div
-        className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 overflow-hidden flex flex-col p-8 gap-4 shrink-0 shadow-2xl z-0 select-none"
+        className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 overflow-hidden flex flex-col p-8 gap-4 shrink-0 shadow-2xl z-0 select-none relative"
         style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
           width: `${DESIGN_W}px`,
           height: `${DESIGN_H}px`,
-          transformOrigin: 'center center',
-          transform: `translate(-50%, -50%) scale(${scale})`,
+          zoom: scale,
         }}
       >
         
