@@ -118,7 +118,7 @@ export function DigitalSign() {
             {/* Tire Indicators Overlay */}
             <div className="absolute inset-0 z-20 pointer-events-none">
               
-              {/* Front Left (Good) */}
+              {/* Front Left (Barely Good) */}
               <motion.div
                 animate={{ scale: [1, 1.02, 1] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -127,7 +127,7 @@ export function DigitalSign() {
                 <CheckCircle2 className="w-12 h-12 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
                 <div className="text-left">
                   <p className="text-xl font-bold text-emerald-400 uppercase tracking-widest mb-1">Front Left</p>
-                  <p className="text-4xl font-black text-white">8/32"</p>
+                  <p className="text-4xl font-black text-white">5/32"</p>
                 </div>
               </motion.div>
 
@@ -146,35 +146,49 @@ export function DigitalSign() {
                     <span className="bg-red-500 text-white px-2 py-0.5 rounded-md text-sm animate-pulse">LOW</span>
                     Front Right
                   </p>
-                  <p className="text-4xl font-black text-white">2/32"</p>
+                  <p className="text-4xl font-black text-white">3/32"</p>
                 </div>
                 <AlertTriangle className="w-12 h-12 text-red-500 drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]" />
               </motion.div>
 
-              {/* Rear Left (Good) */}
+              {/* Rear Left (Low/Danger) */}
               <motion.div
-                animate={{ scale: [1, 1.02, 1] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-[8%] left-[2%] bg-emerald-500/10 backdrop-blur-xl border-2 border-emerald-500/50 rounded-[2rem] p-5 shadow-[0_0_30px_rgba(16,185,129,0.2)] flex items-center gap-4"
+                animate={{
+                  scale: [1, 1.05, 1],
+                  boxShadow: ['0 0 20px rgba(239,68,68,0)', '0 0 50px rgba(239,68,68,0.4)', '0 0 20px rgba(239,68,68,0)']
+                }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute bottom-[8%] left-[2%] bg-red-500/10 backdrop-blur-xl border-2 border-red-500/80 rounded-[2rem] p-5 shadow-[0_0_40px_rgba(239,68,68,0.4)] flex items-center gap-4 overflow-hidden"
               >
-                <CheckCircle2 className="w-12 h-12 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                <div className="absolute inset-0 bg-red-500/10 animate-pulse pointer-events-none"></div>
+                <AlertTriangle className="w-12 h-12 text-red-500 drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]" />
                 <div className="text-left">
-                  <p className="text-xl font-bold text-emerald-400 uppercase tracking-widest mb-1">Rear Left</p>
-                  <p className="text-4xl font-black text-white">7/32"</p>
+                  <p className="text-xl font-bold text-red-400 uppercase tracking-widest mb-1 flex items-center gap-2">
+                    <span className="bg-red-500 text-white px-2 py-0.5 rounded-md text-sm animate-pulse">LOW</span>
+                    Rear Left
+                  </p>
+                  <p className="text-4xl font-black text-white">3/32"</p>
                 </div>
               </motion.div>
 
-              {/* Rear Right (Good) */}
+              {/* Rear Right (Low/Danger) */}
               <motion.div
-                animate={{ scale: [1, 1.02, 1] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-                className="absolute bottom-[8%] right-[2%] bg-emerald-500/10 backdrop-blur-xl border-2 border-emerald-500/50 rounded-[2rem] p-5 shadow-[0_0_30px_rgba(16,185,129,0.2)] flex items-center gap-4"
+                animate={{
+                  scale: [1, 1.05, 1],
+                  boxShadow: ['0 0 20px rgba(239,68,68,0)', '0 0 50px rgba(239,68,68,0.4)', '0 0 20px rgba(239,68,68,0)']
+                }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                className="absolute bottom-[8%] right-[2%] bg-red-500/10 backdrop-blur-xl border-2 border-red-500/80 rounded-[2rem] p-5 shadow-[0_0_40px_rgba(239,68,68,0.4)] flex items-center gap-4 overflow-hidden"
               >
+                <div className="absolute inset-0 bg-red-500/10 animate-pulse pointer-events-none"></div>
                 <div className="text-right">
-                  <p className="text-xl font-bold text-emerald-400 uppercase tracking-widest mb-1">Rear Right</p>
-                  <p className="text-4xl font-black text-white">7/32"</p>
+                  <p className="text-xl font-bold text-red-400 uppercase tracking-widest mb-1 flex justify-end items-center gap-2">
+                    <span className="bg-red-500 text-white px-2 py-0.5 rounded-md text-sm animate-pulse">LOW</span>
+                    Rear Right
+                  </p>
+                  <p className="text-4xl font-black text-white">2/32"</p>
                 </div>
-                <CheckCircle2 className="w-12 h-12 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                <AlertTriangle className="w-12 h-12 text-red-500 drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]" />
               </motion.div>
             </div>
           </div>
