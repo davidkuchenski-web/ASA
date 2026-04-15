@@ -1,36 +1,12 @@
 import { motion } from 'motion/react';
-import { useEffect, useState } from 'react';
 import { Logo } from './Logo';
 import { ShieldAlert, CheckCircle2, AlertTriangle, Calendar, Sparkles } from 'lucide-react';
 import { AnimatedBackground } from './AnimatedBackground';
 import carTopView from '../../imports/—Pngtree—top_view_of_a_sleek_20979523.png';
 
-const DESIGN_W = 1080;
-const DESIGN_H = 1920;
-
 export function DigitalSign() {
-  const [scale, setScale] = useState(1);
-
-  useEffect(() => {
-    const recalc = () => {
-      setScale(Math.min(window.innerWidth / DESIGN_W, window.innerHeight / DESIGN_H));
-    };
-    recalc();
-    window.addEventListener('resize', recalc);
-    return () => window.removeEventListener('resize', recalc);
-  }, []);
-
   return (
-    <div className="w-screen h-screen bg-black overflow-hidden flex items-center justify-center">
-      {/* 1080x1920 portrait design — CSS zoom resizes the layout box to fit */}
-      <div
-        className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 overflow-hidden flex flex-col p-8 gap-4 shrink-0 shadow-2xl z-0 select-none relative"
-        style={{
-          width: `${DESIGN_W}px`,
-          height: `${DESIGN_H}px`,
-          zoom: scale,
-        }}
-      >
+    <div className="w-screen h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 relative overflow-hidden flex flex-col p-8 gap-4 shadow-2xl z-0 select-none">
         
         <AnimatedBackground />
 
@@ -243,7 +219,6 @@ export function DigitalSign() {
           </motion.div>
         </motion.div>
 
-      </div>
     </div>
   );
 }

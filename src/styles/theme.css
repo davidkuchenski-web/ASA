@@ -2,6 +2,8 @@
   --font-size: 16px;
 }
 
+/* Scale root font-size so the 1080x1920 design fits any viewport.
+   All Tailwind rem-based utilities scale proportionally. */
 html {
-  font-size: var(--font-size);
+  font-size: min(1.481vw, 0.833vh);
 }
