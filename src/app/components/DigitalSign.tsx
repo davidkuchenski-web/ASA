@@ -15,6 +15,9 @@ export function DigitalSign() {
       // Content is slightly taller than 1920 at base 16. Safety multiplier to fit.
       const fs = Math.min(w / 1080, h / 1920) * 16 * 0.78;
       document.documentElement.style.fontSize = `${fs}px`;
+      document.documentElement.style.height = '100%';
+      document.body.style.height = '100%';
+      document.body.style.margin = '0';
       setDebug({ w, h, fs: Math.round(fs * 100) / 100 });
     };
     apply();
@@ -26,10 +29,17 @@ export function DigitalSign() {
   }, []);
 
   return (
-    <div className="w-screen h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 relative overflow-hidden flex flex-col p-8 gap-4 shadow-2xl z-0 select-none">
+    <div
+      className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 relative overflow-hidden flex flex-col p-8 gap-4 shadow-2xl z-0 select-none"
+      style={{ width: debug.w || '100vw', height: debug.h || '100vh' }}
+    >
       {/* TEMP DEBUG OVERLAY — viewport info */}
       <div style={{ position: 'fixed', top: 4, left: 4, zIndex: 9999, background: 'lime', color: 'black', padding: '4px 8px', fontFamily: 'monospace', fontSize: '14px', fontWeight: 'bold' }}>
         {debug.w} × {debug.h} | fs={debug.fs}px
+      </div>
+      {/* BOTTOM MARKER — if you can see this, bottom is visible */}
+      <div style={{ position: 'fixed', bottom: 4, left: 4, right: 4, zIndex: 9999, background: 'magenta', color: 'white', padding: '6px 8px', fontFamily: 'monospace', fontSize: '18px', fontWeight: 'bold', textAlign: 'center' }}>
+        ▼ BOTTOM OF SCREEN ▼
       </div>
         
         <AnimatedBackground />
