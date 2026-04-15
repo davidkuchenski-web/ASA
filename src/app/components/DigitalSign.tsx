@@ -44,8 +44,8 @@ export function DigitalSign() {
       className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 overflow-hidden flex flex-col p-8 gap-4 shadow-2xl select-none"
       style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, width: '100%', height: '100%', border: '20px solid yellow', boxSizing: 'border-box' }}
     >
-      {/* HUGE centered viewport diagnostic */}
-      <div style={{ position: 'fixed', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'black', color: 'white', fontFamily: 'monospace', fontWeight: 'bold', zIndex: 99999, flexDirection: 'column', gap: '40px' }}>
+      {/* HUGE diagnostic — RED background fills viewport. Any black on TV = outside viewport. */}
+      <div style={{ position: 'fixed', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'red', color: 'white', fontFamily: 'monospace', fontWeight: 'bold', zIndex: 99999, flexDirection: 'column', gap: '40px' }}>
         <div style={{ fontSize: '80px', color: 'yellow' }}>VIEWPORT</div>
         <div style={{ fontSize: '120px', color: 'lime' }}>{debug.w} × {debug.h}</div>
         <div style={{ fontSize: '60px', color: 'cyan' }}>fs = {debug.fs}px</div>
