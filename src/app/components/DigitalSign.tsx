@@ -64,10 +64,6 @@ export function DigitalSign() {
 
   return (
     <>
-      {/* Debug indicator outside the rotated container, fixed to real viewport */}
-      <div style={{ position: 'fixed', top: 8, left: 8, zIndex: 99999, background: 'lime', color: 'black', padding: '6px 12px', fontFamily: 'monospace', fontSize: '24px', fontWeight: 'bold' }}>
-        {info}
-      </div>
       <div
         className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 overflow-hidden flex flex-col p-8 gap-4 shadow-2xl select-none"
         style={style}
