@@ -44,11 +44,14 @@ export function DigitalSign() {
       className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 overflow-hidden flex flex-col p-8 gap-4 shadow-2xl select-none"
       style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, width: '100%', height: '100%', border: '20px solid yellow', boxSizing: 'border-box' }}
     >
-      {/* Edge markers to show viewport bounds */}
-      <div style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '40px', background: 'cyan', color: 'black', fontWeight: 'bold', fontSize: '20px', textAlign: 'center', zIndex: 9999 }}>TOP EDGE — {debug.w}×{debug.h} fs={debug.fs}</div>
-      <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, height: '40px', background: 'magenta', color: 'white', fontWeight: 'bold', fontSize: '20px', textAlign: 'center', zIndex: 9999 }}>BOTTOM EDGE</div>
-      <div style={{ position: 'fixed', top: 0, bottom: 0, left: 0, width: '20px', background: 'lime', zIndex: 9999 }} />
-      <div style={{ position: 'fixed', top: 0, bottom: 0, right: 0, width: '20px', background: 'orange', zIndex: 9999 }} />
+      {/* HUGE centered viewport diagnostic */}
+      <div style={{ position: 'fixed', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'black', color: 'white', fontFamily: 'monospace', fontWeight: 'bold', zIndex: 99999, flexDirection: 'column', gap: '40px' }}>
+        <div style={{ fontSize: '80px', color: 'yellow' }}>VIEWPORT</div>
+        <div style={{ fontSize: '120px', color: 'lime' }}>{debug.w} × {debug.h}</div>
+        <div style={{ fontSize: '60px', color: 'cyan' }}>fs = {debug.fs}px</div>
+        <div style={{ fontSize: '40px', color: 'magenta' }}>screen: {typeof screen !== 'undefined' ? `${screen.width}x${screen.height}` : 'n/a'}</div>
+        <div style={{ fontSize: '40px', color: 'orange' }}>DPR: {typeof window !== 'undefined' ? window.devicePixelRatio : 'n/a'}</div>
+      </div>
         <AnimatedBackground />
 
         {/* TOP: Header & Welcome */}
