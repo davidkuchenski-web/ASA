@@ -12,12 +12,23 @@ export function DigitalSign() {
     const apply = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
-      // Content is slightly taller than 1920 at base 16. Safety multiplier to fit.
       const fs = Math.min(w / 1080, h / 1920) * 16 * 0.78;
       document.documentElement.style.fontSize = `${fs}px`;
+      document.documentElement.style.margin = '0';
+      document.documentElement.style.padding = '0';
       document.documentElement.style.height = '100%';
-      document.body.style.height = '100%';
+      document.documentElement.style.width = '100%';
       document.body.style.margin = '0';
+      document.body.style.padding = '0';
+      document.body.style.height = '100%';
+      document.body.style.width = '100%';
+      const root = document.getElementById('root');
+      if (root) {
+        root.style.margin = '0';
+        root.style.padding = '0';
+        root.style.height = '100%';
+        root.style.width = '100%';
+      }
       setDebug({ w, h, fs: Math.round(fs * 100) / 100 });
     };
     apply();
@@ -30,8 +41,8 @@ export function DigitalSign() {
 
   return (
     <div
-      className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 relative overflow-hidden flex flex-col p-8 gap-4 shadow-2xl z-0 select-none"
-      style={{ width: debug.w || '100vw', height: debug.h || '100vh' }}
+      className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 overflow-hidden flex flex-col p-8 gap-4 shadow-2xl select-none"
+      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, width: '100%', height: '100%' }}
     >
         <AnimatedBackground />
 
