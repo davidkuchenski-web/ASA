@@ -16,6 +16,7 @@ export function DigitalSign() {
     width: `${DESIGN_W}px`,
     height: `${DESIGN_H}px`,
   });
+  const [info, setInfo] = useState('init');
 
   useEffect(() => {
     const apply = () => {
@@ -54,6 +55,7 @@ export function DigitalSign() {
       document.body.style.margin = '0';
       document.body.style.padding = '0';
       document.body.style.overflow = 'hidden';
+      setInfo(`vw=${vw} vh=${vh} ${isLandscape ? 'LAND' : 'PORT'} scale=${scale.toFixed(3)}`);
     };
     apply();
     window.addEventListener('resize', apply);
@@ -61,10 +63,15 @@ export function DigitalSign() {
   }, []);
 
   return (
-    <div
-      className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 overflow-hidden flex flex-col p-8 gap-4 shadow-2xl select-none"
-      style={style}
-    >
+    <>
+      {/* Debug indicator outside the rotated container, fixed to real viewport */}
+      <div style={{ position: 'fixed', top: 8, left: 8, zIndex: 99999, background: 'lime', color: 'black', padding: '6px 12px', fontFamily: 'monospace', fontSize: '24px', fontWeight: 'bold' }}>
+        {info}
+      </div>
+      <div
+        className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 overflow-hidden flex flex-col p-8 gap-4 shadow-2xl select-none"
+        style={style}
+      >
       <AnimatedBackground />
 
         {/* TOP: Header & Welcome */}
@@ -276,6 +283,7 @@ export function DigitalSign() {
           </motion.div>
         </motion.div>
 
-    </div>
+      </div>
+    </>
   );
 }
