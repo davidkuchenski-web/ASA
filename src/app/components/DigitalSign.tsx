@@ -1,14 +1,37 @@
 import { motion } from 'motion/react';
+import { useEffect, useState } from 'react';
 import { Logo } from './Logo';
 import { ShieldAlert, CheckCircle2, AlertTriangle, Calendar, Sparkles } from 'lucide-react';
 import { AnimatedBackground } from './AnimatedBackground';
 import carTopView from '../../imports/—Pngtree—top_view_of_a_sleek_20979523.png';
 
+const DESIGN_W = 1080;
+const DESIGN_H = 1920;
+
 export function DigitalSign() {
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const recalc = () => {
+      setScale(Math.min(window.innerWidth / DESIGN_W, window.innerHeight / DESIGN_H));
+    };
+    recalc();
+    window.addEventListener('resize', recalc);
+    return () => window.removeEventListener('resize', recalc);
+  }, []);
+
   return (
-    <div className="w-full h-screen bg-black overflow-y-auto overflow-x-hidden flex justify-center">
-      {/* 1080x1920 Fixed Resolution Container for 49" Portrait Display */}
-      <div className="w-[1080px] min-h-[1920px] h-[1920px] bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 relative overflow-hidden flex flex-col p-8 gap-4 shrink-0 shadow-2xl z-0 select-none">
+    <div className="w-screen h-screen bg-black overflow-hidden flex justify-center items-center">
+      {/* 1080x1920 portrait design scaled to fit viewport */}
+      <div
+        className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 relative overflow-hidden flex flex-col p-8 gap-4 shrink-0 shadow-2xl z-0 select-none"
+        style={{
+          width: `${DESIGN_W}px`,
+          height: `${DESIGN_H}px`,
+          transformOrigin: 'center center',
+          transform: `scale(${scale})`,
+        }}
+      >
         
         <AnimatedBackground />
 
