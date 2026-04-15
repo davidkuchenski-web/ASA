@@ -96,7 +96,21 @@ export function DigitalSign() {
 
         <div className="relative flex-1 w-full flex items-center justify-center">
           <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
-            <img src={carTopView} alt="Vehicle Top View" className="h-full object-contain opacity-90" />
+            <div className="relative h-full">
+              <img src={carTopView} alt="Vehicle Top View" className="h-full object-contain opacity-90" />
+              <div className="absolute inset-0 overflow-hidden mix-blend-screen pointer-events-none">
+                <motion.div
+                  animate={{ x: ['-120%', '220%'] }}
+                  transition={{ duration: 3.5, repeat: Infinity, repeatDelay: 2.5, ease: 'easeInOut' }}
+                  className="absolute inset-y-0 w-1/3 skew-x-[-20deg]"
+                  style={{
+                    background:
+                      'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0) 100%)',
+                    filter: 'blur(6px)',
+                  }}
+                />
+              </div>
+            </div>
           </div>
 
           <div className="absolute inset-0 z-20 pointer-events-none">
