@@ -36,8 +36,8 @@ export function DigitalSign() {
       <div className="relative z-10 flex justify-between items-center w-full px-2">
         <Logo size="lg" />
         <div className="text-right flex flex-col items-end">
-          <h1 className="text-5xl font-black text-amber-400 tracking-widest uppercase">Welcome</h1>
-          <h2 className="text-6xl font-black text-amber-400 uppercase tracking-wider">Back</h2>
+          <h1 className="text-5xl font-black text-[#FF6900] tracking-widest uppercase">Welcome</h1>
+          <h2 className="text-6xl font-black text-[#FF6900] uppercase tracking-wider">Back</h2>
         </div>
       </div>
 
@@ -71,19 +71,19 @@ export function DigitalSign() {
       </div>
 
       {/* SAVINGS */}
-      <div className={`${cardClass} p-8 flex flex-col items-center`}>
-        <h3 className="text-3xl text-slate-300 font-semibold uppercase tracking-widest text-center mb-6">
+      <div className="relative z-10 bg-emerald-900/50 border border-emerald-600/60 rounded-[2rem] shadow-xl p-8 flex flex-col items-center">
+        <h3 className="text-3xl text-emerald-300 font-semibold uppercase tracking-widest text-center mb-6">
           With a Membership, you would have saved
         </h3>
         <div className="flex justify-around items-center w-full">
           <div className="flex flex-col items-center">
-            <p className="text-2xl text-slate-400 font-medium uppercase tracking-widest mb-2">Last 30 Days</p>
-            <p className="text-7xl font-black text-amber-400 tracking-tight leading-none">$35</p>
+            <p className="text-2xl text-emerald-200/80 font-medium uppercase tracking-widest mb-2">Last 30 Days</p>
+            <p className="text-7xl font-black text-white tracking-tight leading-none">$35</p>
           </div>
-          <div className="w-px h-20 bg-slate-700"></div>
+          <div className="w-px h-20 bg-emerald-700/60"></div>
           <div className="flex flex-col items-center">
-            <p className="text-2xl text-slate-400 font-medium uppercase tracking-widest mb-2">Previous 90 Days</p>
-            <p className="text-7xl font-black text-amber-400 tracking-tight leading-none">$105</p>
+            <p className="text-2xl text-emerald-200/80 font-medium uppercase tracking-widest mb-2">Previous 90 Days</p>
+            <p className="text-7xl font-black text-white tracking-tight leading-none">$105</p>
           </div>
         </div>
       </div>
