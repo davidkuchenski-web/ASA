@@ -12,8 +12,8 @@ export function DigitalSign() {
     const apply = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
-      // Design is 1080x1920. Default base = 16px. Scale so 1rem fits both dimensions.
-      const fs = Math.min(w / 1080, h / 1920) * 16;
+      // Content is slightly taller than 1920 at base 16. Safety multiplier to fit.
+      const fs = Math.min(w / 1080, h / 1920) * 16 * 0.78;
       document.documentElement.style.fontSize = `${fs}px`;
       setDebug({ w, h, fs: Math.round(fs * 100) / 100 });
     };
