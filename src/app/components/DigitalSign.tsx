@@ -8,8 +8,16 @@ import carTopView from '../../imports/—Pngtree—top_view_of_a_sleek_20979523.
 export function DigitalSign() {
   useEffect(() => {
     const apply = () => {
-      const fs = Math.min(window.innerWidth / 1080, window.innerHeight / 1920) * 16;
+      // Viewport is landscape 1920x1080. Content is rotated 90° to appear portrait.
+      // Design is 1080 wide × 1920 tall → maps to viewport height × viewport width.
+      const fs = Math.min(window.innerHeight / 1080, window.innerWidth / 1920) * 16;
       document.documentElement.style.fontSize = `${fs}px`;
+      document.documentElement.style.margin = '0';
+      document.documentElement.style.padding = '0';
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.margin = '0';
+      document.body.style.padding = '0';
+      document.body.style.overflow = 'hidden';
     };
     apply();
     window.addEventListener('resize', apply);
@@ -22,7 +30,15 @@ export function DigitalSign() {
   return (
     <div
       className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 overflow-hidden flex flex-col p-6 gap-3 shadow-2xl select-none"
-      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vh',
+        height: '100vw',
+        transformOrigin: 'top left',
+        transform: 'translate(100vw, 0) rotate(90deg)',
+      }}
     >
       <AnimatedBackground />
 
