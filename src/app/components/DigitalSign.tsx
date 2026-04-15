@@ -1,35 +1,15 @@
 import { motion } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Logo } from './Logo';
 import { ShieldAlert, CheckCircle2, AlertTriangle, Calendar, Sparkles } from 'lucide-react';
 import { AnimatedBackground } from './AnimatedBackground';
 import carTopView from '../../imports/—Pngtree—top_view_of_a_sleek_20979523.png';
 
 export function DigitalSign() {
-  const [debug, setDebug] = useState({ w: 0, h: 0, fs: 0 });
-
   useEffect(() => {
     const apply = () => {
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      const fs = Math.min(w / 1080, h / 1920) * 16 * 0.78;
+      const fs = Math.min(window.innerWidth / 1080, window.innerHeight / 1920) * 16;
       document.documentElement.style.fontSize = `${fs}px`;
-      document.documentElement.style.margin = '0';
-      document.documentElement.style.padding = '0';
-      document.documentElement.style.height = '100%';
-      document.documentElement.style.width = '100%';
-      document.body.style.margin = '0';
-      document.body.style.padding = '0';
-      document.body.style.height = '100%';
-      document.body.style.width = '100%';
-      const root = document.getElementById('root');
-      if (root) {
-        root.style.margin = '0';
-        root.style.padding = '0';
-        root.style.height = '100%';
-        root.style.width = '100%';
-      }
-      setDebug({ w, h, fs: Math.round(fs * 100) / 100 });
     };
     apply();
     window.addEventListener('resize', apply);
@@ -41,18 +21,10 @@ export function DigitalSign() {
 
   return (
     <div
-      className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 overflow-hidden flex flex-col p-8 gap-4 shadow-2xl select-none"
-      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, width: '100%', height: '100%', border: '20px solid yellow', boxSizing: 'border-box' }}
+      className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 overflow-hidden flex flex-col p-6 gap-3 shadow-2xl select-none"
+      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
     >
-      {/* Test: force LANDSCAPE 1920x1080 at top-left. If this fills TV, LG is rotating internally. */}
-      <div style={{ position: 'fixed', top: 0, left: 0, width: '1920px', height: '1080px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'red', color: 'white', fontFamily: 'monospace', fontWeight: 'bold', zIndex: 99999, flexDirection: 'column', gap: '40px', outline: '10px solid blue' }}>
-        <div style={{ fontSize: '80px', color: 'yellow' }}>VIEWPORT</div>
-        <div style={{ fontSize: '120px', color: 'lime' }}>{debug.w} × {debug.h}</div>
-        <div style={{ fontSize: '60px', color: 'cyan' }}>fs = {debug.fs}px</div>
-        <div style={{ fontSize: '40px', color: 'magenta' }}>screen: {typeof screen !== 'undefined' ? `${screen.width}x${screen.height}` : 'n/a'}</div>
-        <div style={{ fontSize: '40px', color: 'orange' }}>DPR: {typeof window !== 'undefined' ? window.devicePixelRatio : 'n/a'}</div>
-      </div>
-        <AnimatedBackground />
+      <AnimatedBackground />
 
         {/* TOP: Header & Welcome */}
         <div className="relative z-10 flex justify-between items-center w-full px-4 pt-4">
