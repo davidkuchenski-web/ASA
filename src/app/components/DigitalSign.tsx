@@ -1,73 +1,36 @@
 import { motion } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Logo } from './Logo';
 import { ShieldAlert, CheckCircle2, AlertTriangle, Calendar, Sparkles } from 'lucide-react';
 import { AnimatedBackground } from './AnimatedBackground';
 import carTopView from '../../imports/—Pngtree—top_view_of_a_sleek_20979523.png';
 
-const DESIGN_W = 1080;
-const DESIGN_H = 1920;
-
 export function DigitalSign() {
-  const [style, setStyle] = useState<React.CSSProperties>({
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: `${DESIGN_W}px`,
-    height: `${DESIGN_H}px`,
-  });
-  const [info, setInfo] = useState('init');
-
   useEffect(() => {
+    // Scale root font-size proportionally so design (1080x1920) fits any portrait viewport.
     const apply = () => {
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const isLandscape = vw > vh;
-
-      let scale: number;
-      let transform: string;
-      if (isLandscape) {
-        // Landscape viewport. Rotate portrait design 90° CW to fit.
-        scale = Math.min(vh / DESIGN_W, vw / DESIGN_H);
-        // After scale and rotate, the (scaled) design occupies
-        // scale*DESIGN_H wide × scale*DESIGN_W tall.
-        // Position top-left via translate:
-        transform = `translate(${vw}px, 0) rotate(90deg) scale(${scale})`;
-      } else {
-        // Portrait viewport, no rotation.
-        scale = Math.min(vw / DESIGN_W, vh / DESIGN_H);
-        transform = `scale(${scale})`;
-      }
-
-      setStyle({
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: `${DESIGN_W}px`,
-        height: `${DESIGN_H}px`,
-        transformOrigin: 'top left',
-        transform,
-      });
-
+      const fs = Math.min(window.innerWidth / 1080, window.innerHeight / 1920) * 16;
+      document.documentElement.style.fontSize = `${fs}px`;
       document.documentElement.style.margin = '0';
       document.documentElement.style.padding = '0';
       document.documentElement.style.overflow = 'hidden';
       document.body.style.margin = '0';
       document.body.style.padding = '0';
       document.body.style.overflow = 'hidden';
-      setInfo(`vw=${vw} vh=${vh} ${isLandscape ? 'LAND' : 'PORT'} scale=${scale.toFixed(3)}`);
     };
     apply();
     window.addEventListener('resize', apply);
-    return () => window.removeEventListener('resize', apply);
+    return () => {
+      window.removeEventListener('resize', apply);
+      document.documentElement.style.fontSize = '';
+    };
   }, []);
 
   return (
-    <>
-      <div
-        className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 overflow-hidden flex flex-col p-8 gap-4 shadow-2xl select-none"
-        style={style}
-      >
+    <div
+      className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 overflow-hidden flex flex-col p-8 gap-4 shadow-2xl select-none"
+      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
+    >
       <AnimatedBackground />
 
         {/* TOP: Header & Welcome */}
@@ -279,7 +242,6 @@ export function DigitalSign() {
           </motion.div>
         </motion.div>
 
-      </div>
-    </>
+    </div>
   );
 }
