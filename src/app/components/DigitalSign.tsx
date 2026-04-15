@@ -1,17 +1,53 @@
 import { motion } from 'motion/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Logo } from './Logo';
 import { ShieldAlert, CheckCircle2, AlertTriangle, Calendar, Sparkles } from 'lucide-react';
 import { AnimatedBackground } from './AnimatedBackground';
 import carTopView from '../../imports/—Pngtree—top_view_of_a_sleek_20979523.png';
 
+const DESIGN_W = 1080;
+const DESIGN_H = 1920;
+
 export function DigitalSign() {
+  const [style, setStyle] = useState<React.CSSProperties>({
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: `${DESIGN_W}px`,
+    height: `${DESIGN_H}px`,
+  });
+
   useEffect(() => {
     const apply = () => {
-      // Viewport is landscape 1920x1080. Content is rotated 90° to appear portrait.
-      // Design is 1080 wide × 1920 tall → maps to viewport height × viewport width.
-      const fs = Math.min(window.innerHeight / 1080, window.innerWidth / 1920) * 16;
-      document.documentElement.style.fontSize = `${fs}px`;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const isLandscape = vw > vh;
+
+      let scale: number;
+      let transform: string;
+      if (isLandscape) {
+        // Landscape viewport. Rotate portrait design 90° CW to fit.
+        scale = Math.min(vh / DESIGN_W, vw / DESIGN_H);
+        // After scale and rotate, the (scaled) design occupies
+        // scale*DESIGN_H wide × scale*DESIGN_W tall.
+        // Position top-left via translate:
+        transform = `translate(${vw}px, 0) rotate(90deg) scale(${scale})`;
+      } else {
+        // Portrait viewport, no rotation.
+        scale = Math.min(vw / DESIGN_W, vh / DESIGN_H);
+        transform = `scale(${scale})`;
+      }
+
+      setStyle({
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: `${DESIGN_W}px`,
+        height: `${DESIGN_H}px`,
+        transformOrigin: 'top left',
+        transform,
+      });
+
       document.documentElement.style.margin = '0';
       document.documentElement.style.padding = '0';
       document.documentElement.style.overflow = 'hidden';
@@ -21,24 +57,13 @@ export function DigitalSign() {
     };
     apply();
     window.addEventListener('resize', apply);
-    return () => {
-      window.removeEventListener('resize', apply);
-      document.documentElement.style.fontSize = '';
-    };
+    return () => window.removeEventListener('resize', apply);
   }, []);
 
   return (
     <div
-      className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 overflow-hidden flex flex-col p-6 gap-3 shadow-2xl select-none"
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vh',
-        height: '100vw',
-        transformOrigin: 'top left',
-        transform: 'translate(100vw, 0) rotate(90deg)',
-      }}
+      className="bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 overflow-hidden flex flex-col p-8 gap-4 shadow-2xl select-none"
+      style={style}
     >
       <AnimatedBackground />
 
