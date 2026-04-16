@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { Logo } from './Logo';
-import { Check, Mic } from 'lucide-react';
+import { Check, Mic, AlertTriangle } from 'lucide-react';
 import carTopView from '../../imports/—Pngtree—top_view_of_a_sleek_20979523.png';
 
 const FRAMES = [2200, 8500, 4500, 5000, 4000, 4500];
