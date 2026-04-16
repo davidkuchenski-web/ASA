@@ -146,14 +146,14 @@ function SceneVehicleScan() {
 
       {/* UPPER-MID — Vehicle identity (15%) */}
       <div className="flex items-center justify-between" style={{ height: '15%' }}>
-        <AnimatePresence>
-          {stage >= 3 && (
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
-              <p style={{ fontSize: '5vw' }} className="font-medium text-white leading-none">2026 BMW X3</p>
-              <p style={{ fontSize: '2vw' }} className="text-slate-500 mt-2">Blue exterior</p>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: stage >= 3 ? 1 : 0, y: stage >= 3 ? 0 : 10 }}
+          transition={{ duration: 0.3 }}
+        >
+          <p style={{ fontSize: '5vw' }} className="font-medium text-white leading-none">2026 BMW X3</p>
+          <p style={{ fontSize: '2vw' }} className="text-slate-500 mt-2">Blue exterior</p>
+        </motion.div>
 
         <div className="bg-white rounded-2xl shrink-0" style={{ padding: '1.2vh 2.5vw' }}>
           <p style={{ fontSize: '1.3vw' }} className="font-bold text-slate-500 tracking-[0.3em] uppercase text-center">Kentucky</p>
@@ -164,8 +164,8 @@ function SceneVehicleScan() {
         </div>
       </div>
 
-      {/* CENTER — Tire tread (50%) — no card, flows with background */}
-      <div className="flex items-center justify-center" style={{ height: '50%' }}>
+      {/* CENTER — Tire tread (60%) — no card, flows with background */}
+      <div className="flex items-center justify-center" style={{ height: '60%' }}>
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: stage >= 1 ? 1 : 0, y: stage >= 1 ? 0 : 10 }}
@@ -309,29 +309,6 @@ function SceneVehicleScan() {
         </AnimatePresence>
       </div>
 
-      {/* BOTTOM — Context strip (10%) */}
-      <div className="flex items-center justify-around" style={{ height: '10%' }}>
-        <AnimatePresence>
-          {stage >= 5 && (
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="flex items-center justify-around w-full">
-              <div className="text-center">
-                <p style={{ fontSize: '1.3vw', letterSpacing: '0.3em' }} className="text-slate-500 font-semibold uppercase mb-1">Last Wash</p>
-                <p style={{ fontSize: '2.2vw' }} className="text-white font-bold">12 Days Ago</p>
-              </div>
-              <div className="w-px h-10 bg-slate-700" />
-              <div className="text-center">
-                <p style={{ fontSize: '1.3vw', letterSpacing: '0.3em' }} className="text-slate-500 font-semibold uppercase mb-1">This Year</p>
-                <p style={{ fontSize: '2.2vw' }} className="text-white font-bold">8 Washes</p>
-              </div>
-              <div className="w-px h-10 bg-slate-700" />
-              <div className="text-center">
-                <p style={{ fontSize: '1.3vw', letterSpacing: '0.3em' }} className="text-slate-500 font-semibold uppercase mb-1">Recommended</p>
-                <p style={{ fontSize: '2.2vw' }} className="text-[#FF6900] font-bold">Ceramic Shield</p>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
     </motion.div>
   );
 }
