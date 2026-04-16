@@ -71,12 +71,11 @@ const crossfade = {
 
 function SceneLogo() {
   return (
-    <motion.div {...crossfade} className="absolute inset-0 flex items-center justify-center">
+    <motion.div {...crossfade} className="absolute inset-0 flex items-center justify-center overflow-hidden">
       <motion.div
-        initial={{ scale: 0.5, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: 'spring', stiffness: 50 }}
-        style={{ transform: 'scale(5.5)' }}
+        initial={{ scale: 2, opacity: 0 }}
+        animate={{ scale: 5, opacity: 1 }}
+        transition={{ type: 'spring', stiffness: 40, damping: 18 }}
       >
         <Logo size="xl" />
       </motion.div>
@@ -392,12 +391,12 @@ function SceneOffer() {
         transition={{ type: 'spring', stiffness: 50, delay: 0.4 }}
         className="text-center mt-4"
       >
-        <p style={{ fontSize: '22vw', lineHeight: 0.9 }} className="font-black text-white tracking-tight">3 Months</p>
-        <p style={{ fontSize: '4vw', lineHeight: 1 }} className="font-semibold text-slate-400 uppercase tracking-widest mt-4">at just</p>
+        <p style={{ fontSize: '16vw', lineHeight: 0.95 }} className="font-black text-white tracking-tight">3 Months</p>
+        <p style={{ fontSize: '3.5vw', lineHeight: 1 }} className="font-semibold text-slate-400 uppercase tracking-widest mt-4">at just</p>
         <motion.p
           animate={{ scale: [1, 1.03, 1] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          style={{ fontSize: '22vw', lineHeight: 0.9 }}
+          style={{ fontSize: '32vw', lineHeight: 0.9 }}
           className="font-black text-[#FF6900] tracking-tighter mt-2"
         >
           $9.99
@@ -444,8 +443,8 @@ function SceneCTA() {
       <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', stiffness: 60, delay: 1.2 }} className="mt-6">
         <motion.div animate={{ scale: [1, 1.06, 1] }} transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
           className="bg-[#FF6900] rounded-[2rem]" style={{ padding: '3vh 5vw' }}>
-          <p style={{ fontSize: '4vw', lineHeight: 1 }} className="font-black text-white uppercase tracking-tight text-center">
-            Say "Let's Play, Dustin!"
+          <p style={{ fontSize: '4.5vw', lineHeight: 1 }} className="font-black text-white uppercase tracking-tight text-center">
+            "Dustin, Let's Play!"
           </p>
         </motion.div>
       </motion.div>
