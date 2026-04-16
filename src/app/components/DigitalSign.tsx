@@ -4,7 +4,7 @@ import { Logo } from './Logo';
 import { Check, Mic } from 'lucide-react';
 import carTopView from '../../imports/—Pngtree—top_view_of_a_sleek_20979523.png';
 
-const FRAMES = [1500, 6000, 3000, 3500, 2800, 3000];
+const FRAMES = [2200, 8500, 4500, 5000, 4000, 4500];
 const FRAME_COUNT = FRAMES.length;
 
 function useCountUp(target: number, ms: number) {
@@ -175,12 +175,22 @@ function SceneVehicleScan() {
           style={{ aspectRatio: '9/14' }}
         >
           <img src={carTopView} alt="Vehicle" className="h-full w-full object-contain" />
-          <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ clipPath: 'inset(5% 12% 5% 12%)' }}>
+          {/* Glisten on hood only (top 15-30% of car) */}
+          <div className="absolute left-0 right-0 overflow-hidden pointer-events-none" style={{ top: '15%', height: '15%', clipPath: 'inset(0 18% 0 18%)' }}>
             <motion.div
               animate={{ x: ['-120%', '220%'] }}
-              transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, ease: 'easeInOut' }}
-              className="absolute inset-y-0 w-1/3 skew-x-[-20deg]"
-              style={{ background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%)', filter: 'blur(6px)' }}
+              transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 3.5, ease: 'easeInOut' }}
+              className="absolute inset-y-0 w-1/2 skew-x-[-20deg]"
+              style={{ background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0) 100%)', filter: 'blur(5px)' }}
+            />
+          </div>
+          {/* Glisten on roof only (40-55% of car) */}
+          <div className="absolute left-0 right-0 overflow-hidden pointer-events-none" style={{ top: '40%', height: '17%', clipPath: 'inset(0 22% 0 22%)' }}>
+            <motion.div
+              animate={{ x: ['-120%', '220%'] }}
+              transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 3.5, ease: 'easeInOut', delay: 0.8 }}
+              className="absolute inset-y-0 w-1/2 skew-x-[-20deg]"
+              style={{ background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%)', filter: 'blur(5px)' }}
             />
           </div>
 
@@ -323,8 +333,8 @@ function SceneInsight() {
     <motion.div {...crossfade} className="absolute inset-0 flex flex-col items-center justify-center">
       <motion.div initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', stiffness: 50, delay: 0.1 }} className="text-center">
         <p style={{ fontSize: '5vw' }} className="text-slate-500 font-light tracking-widest uppercase mb-4">It's been</p>
-        <p style={{ fontSize: '45vw', lineHeight: 0.85 }} className="font-black text-[#FF6900]">{count}</p>
-        <p style={{ fontSize: '14vw', lineHeight: 0.9 }} className="font-black text-white uppercase tracking-tight -mt-2">Days</p>
+        <p style={{ fontSize: '38vw', lineHeight: 0.85 }} className="font-black text-[#FF6900]">{count}</p>
+        <p style={{ fontSize: '12vw', lineHeight: 0.9 }} className="font-black text-white uppercase tracking-tight -mt-2">Days</p>
       </motion.div>
       <motion.div initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6, delay: 0.8 }} className="mt-8">
         <p style={{ fontSize: '4vw' }} className="text-slate-400 text-center font-light">since your last wash</p>
@@ -349,7 +359,7 @@ function SceneSavings() {
         <p style={{ fontSize: '5vw' }} className="text-emerald-400 font-semibold uppercase tracking-[0.2em] text-center">You'd have saved</p>
       </motion.div>
       <motion.div initial={{ scale: 0.3, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', stiffness: 40, damping: 10, delay: 0.4 }} className="text-center">
-        <motion.p animate={{ scale: [1, 1.02, 1] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }} style={{ fontSize: '50vw', lineHeight: 0.85 }} className="font-black tracking-tighter">
+        <motion.p animate={{ scale: [1, 1.02, 1] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }} style={{ fontSize: '32vw', lineHeight: 0.9 }} className="font-black tracking-tighter">
           <span className="text-emerald-400">$</span>
           <span className="text-white">{count}</span>
         </motion.p>
@@ -378,7 +388,7 @@ function SceneOffer() {
         <motion.p
           animate={{ scale: [1, 1.03, 1] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          style={{ fontSize: '42vw', lineHeight: 0.85 }}
+          style={{ fontSize: '24vw', lineHeight: 0.9 }}
           className="font-black text-[#FF6900] tracking-tighter"
         >
           $9.99
@@ -414,13 +424,13 @@ function SceneCTA() {
 
       <motion.div initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.7, delay: 0.4 }} className="text-center mt-6">
         <p style={{ fontSize: '4vw' }} className="text-slate-400 font-medium uppercase tracking-[0.4em]">Say hello to</p>
-        <p style={{ fontSize: '18vw', lineHeight: 0.9 }} className="font-black text-white uppercase tracking-tight mt-2">Dustin</p>
+        <p style={{ fontSize: '14vw', lineHeight: 0.9 }} className="font-black text-white uppercase tracking-tight mt-2">Dustin</p>
       </motion.div>
 
       <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', stiffness: 60, delay: 0.9 }} className="mt-8">
         <motion.div animate={{ scale: [1, 1.06, 1] }} transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
           className="bg-[#FF6900] rounded-[2rem]" style={{ padding: '3vh 6vw' }}>
-          <p style={{ fontSize: '5.5vw', lineHeight: 1 }} className="font-black text-white uppercase tracking-tight text-center">
+          <p style={{ fontSize: '4.5vw', lineHeight: 1 }} className="font-black text-white uppercase tracking-tight text-center">
             Just Start Talking
           </p>
         </motion.div>
