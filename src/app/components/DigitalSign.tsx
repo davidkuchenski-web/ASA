@@ -76,7 +76,7 @@ function SceneLogo() {
         initial={{ scale: 0.5, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 50 }}
-        style={{ transform: 'scale(4)' }}
+        style={{ transform: 'scale(5.5)' }}
       >
         <Logo size="xl" />
       </motion.div>
@@ -381,31 +381,31 @@ function SceneSavings() {
 
 function SceneOffer() {
   return (
-    <motion.div {...crossfade} className="absolute inset-0 flex flex-col items-center justify-center">
+    <motion.div {...crossfade} className="absolute inset-0 flex flex-col items-center justify-center px-6">
       <motion.div initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6, delay: 0.2 }}>
-        <p style={{ fontSize: '4vw' }} className="text-slate-400 font-semibold uppercase tracking-[0.3em] text-center">Your first month</p>
+        <p style={{ fontSize: '4vw' }} className="text-slate-400 font-semibold uppercase tracking-[0.3em] text-center">You could win</p>
       </motion.div>
 
       <motion.div
         initial={{ scale: 0.4, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 50, delay: 0.4 }}
-        className="text-center"
+        className="text-center mt-4"
       >
-        <p style={{ fontSize: '8vw', lineHeight: 1 }} className="font-semibold text-slate-500 line-through mt-4">$49</p>
+        <p style={{ fontSize: '22vw', lineHeight: 0.9 }} className="font-black text-white tracking-tight">3 Months</p>
+        <p style={{ fontSize: '4vw', lineHeight: 1 }} className="font-semibold text-slate-400 uppercase tracking-widest mt-4">at just</p>
         <motion.p
           animate={{ scale: [1, 1.03, 1] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          style={{ fontSize: '24vw', lineHeight: 0.9 }}
-          className="font-black text-[#FF6900] tracking-tighter"
+          style={{ fontSize: '22vw', lineHeight: 0.9 }}
+          className="font-black text-[#FF6900] tracking-tighter mt-2"
         >
           $9.99
         </motion.p>
       </motion.div>
 
-      <motion.div initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6, delay: 1 }} className="mt-4 text-center">
-        <p style={{ fontSize: '4vw' }} className="text-white font-bold uppercase tracking-wider">Unlimited Club</p>
-        <p style={{ fontSize: '2.5vw' }} className="text-slate-400 font-medium mt-2">Then $49/mo • Cancel anytime</p>
+      <motion.div initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6, delay: 1.2 }} className="mt-8 text-center">
+        <p style={{ fontSize: '3vw' }} className="text-slate-400 font-medium">Then standard pricing • Cancel anytime</p>
       </motion.div>
     </motion.div>
   );
@@ -431,15 +431,21 @@ function SceneCTA() {
       </div>
 
       <motion.div initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.7, delay: 0.4 }} className="text-center mt-6">
-        <p style={{ fontSize: '4vw' }} className="text-slate-400 font-medium uppercase tracking-[0.4em]">Say hello to</p>
+        <p style={{ fontSize: '4vw' }} className="text-slate-400 font-medium uppercase tracking-[0.4em]">Play with</p>
         <p style={{ fontSize: '14vw', lineHeight: 0.9 }} className="font-black text-white uppercase tracking-tight mt-2">Dustin</p>
       </motion.div>
 
-      <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', stiffness: 60, delay: 0.9 }} className="mt-8">
+      <motion.div initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6, delay: 0.9 }} className="mt-4 text-center px-6">
+        <p style={{ fontSize: '3vw' }} className="text-slate-300 font-medium leading-snug">
+          For your chance to win
+        </p>
+      </motion.div>
+
+      <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', stiffness: 60, delay: 1.2 }} className="mt-6">
         <motion.div animate={{ scale: [1, 1.06, 1] }} transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="bg-[#FF6900] rounded-[2rem]" style={{ padding: '3vh 6vw' }}>
-          <p style={{ fontSize: '4.5vw', lineHeight: 1 }} className="font-black text-white uppercase tracking-tight text-center">
-            Just Start Talking
+          className="bg-[#FF6900] rounded-[2rem]" style={{ padding: '3vh 5vw' }}>
+          <p style={{ fontSize: '4vw', lineHeight: 1 }} className="font-black text-white uppercase tracking-tight text-center">
+            Say "Let's Play, Dustin!"
           </p>
         </motion.div>
       </motion.div>
