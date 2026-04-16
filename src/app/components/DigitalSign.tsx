@@ -164,14 +164,14 @@ function SceneVehicleScan() {
         </div>
       </div>
 
-      {/* CENTER — Tire tread card (50%) */}
-      <div className="flex items-center justify-center" style={{ height: '50%', padding: '1vh 0' }}>
+      {/* CENTER — Tire tread (50%) — no card, flows with background */}
+      <div className="flex items-center justify-center" style={{ height: '50%' }}>
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: stage >= 1 ? 1 : 0, y: stage >= 1 ? 0 : 10 }}
           transition={{ duration: 0.5 }}
-          className="relative w-full h-full bg-slate-800/60 border border-slate-700/60 rounded-[2rem] shadow-xl flex flex-col"
-          style={{ padding: '2vh 3vw' }}
+          className="relative w-full h-full flex flex-col"
+          style={{ padding: '1vh 3vw' }}
         >
           <h2 style={{ fontSize: '3.5vw' }} className="font-black text-white tracking-widest uppercase text-center">
             <span className="text-[#FF6900]">Tire Tread</span> Analysis
@@ -449,9 +449,6 @@ function SceneCTA() {
         </motion.div>
       </motion.div>
 
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 1.8 }} className="mt-10">
-        <Logo size="lg" />
-      </motion.div>
     </motion.div>
   );
 }
@@ -487,7 +484,7 @@ export function DigitalSign() {
   const Scene = scenes[idx];
 
   return (
-    <div className="bg-slate-950 overflow-hidden select-none" style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}>
+    <div className="overflow-hidden select-none" style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(180deg, #020617 0%, #0f172a 50%, #020617 100%)' }}>
       <AnimatedBG />
       <AnimatePresence mode="wait">
         <Scene key={idx} />
