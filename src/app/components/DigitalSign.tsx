@@ -1,227 +1,348 @@
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
+import { useEffect, useState } from 'react';
 import { Logo } from './Logo';
-import { ShieldAlert, CheckCircle2, AlertTriangle, Calendar, Sparkles } from 'lucide-react';
-import { AnimatedBackground } from './AnimatedBackground';
+import { AlertTriangle, Sparkles } from 'lucide-react';
 import carTopView from '../../imports/—Pngtree—top_view_of_a_sleek_20979523.png';
 
-export function DigitalSign() {
+const SCENE_DURATION = 7000;
+const SCENE_COUNT = 5;
+
+function AnimatedBG() {
   return (
-    <div className="w-full h-screen bg-black overflow-y-auto overflow-x-hidden flex justify-center">
-      {/* 1080x1920 Fixed Resolution Container for 49" Portrait Display */}
-      <div className="w-[1080px] min-h-[1920px] h-[1920px] bg-gradient-to-br from-slate-950 via-slate-900 to-amber-950/20 relative overflow-hidden flex flex-col p-8 gap-4 shrink-0 shadow-2xl z-0 select-none">
-        
-        <AnimatedBackground />
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <motion.div
+        animate={{ x: [0, 100, -60, 0], y: [0, -120, 40, 0], scale: [1, 1.3, 0.9, 1] }}
+        transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute rounded-full"
+        style={{ top: '-15%', left: '-15%', width: '70%', height: '40%', background: 'radial-gradient(circle, rgba(255,105,0,0.25) 0%, transparent 60%)' }}
+      />
+      <motion.div
+        animate={{ x: [0, -80, 50, 0], y: [0, 60, -90, 0], scale: [1, 0.8, 1.2, 1] }}
+        transition={{ duration: 28, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute rounded-full"
+        style={{ top: '40%', right: '-10%', width: '60%', height: '35%', background: 'radial-gradient(circle, rgba(255,105,0,0.15) 0%, transparent 60%)' }}
+      />
+      <motion.div
+        animate={{ top: ['-5%', '105%'] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+        className="absolute left-0 right-0"
+        style={{ height: '2px', background: 'linear-gradient(90deg, transparent 0%, rgba(255,105,0,0.2) 50%, transparent 100%)' }}
+      />
+    </div>
+  );
+}
 
-        {/* TOP: Header & Welcome */}
-        <div className="relative z-10 flex justify-between items-center w-full px-4 pt-4">
-          <Logo size="lg" />
-          <div className="text-right flex flex-col items-end">
-            <h1 className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-[#FF6900] tracking-widest uppercase drop-shadow-md">Welcome</h1>
-            <h2 className="text-6xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-[#FF6900] font-black mt-2 drop-shadow-lg uppercase tracking-wider">Back</h2>
+function SceneWelcome() {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+      className="absolute inset-0 flex flex-col items-center justify-center"
+    >
+      <motion.div
+        initial={{ scale: 0.5, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ type: 'spring', stiffness: 50, delay: 0.2 }}
+        style={{ transform: 'scale(2)' }}
+        className="mb-16"
+      >
+        <Logo size="xl" />
+      </motion.div>
+
+      <motion.div
+        initial={{ y: 80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.7 }}
+        className="text-center mt-20"
+      >
+        <p style={{ fontSize: '12vw', lineHeight: 0.9 }} className="font-black text-[#FF6900] uppercase tracking-tight">
+          Welcome
+        </p>
+        <p style={{ fontSize: '16vw', lineHeight: 0.9 }} className="font-black text-white uppercase tracking-tight">
+          Back
+        </p>
+      </motion.div>
+
+      <motion.div
+        initial={{ y: 40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, delay: 1.3 }}
+        className="mt-12"
+        style={{ width: '85%' }}
+      >
+        <div className="bg-white/5 border border-white/10 rounded-3xl flex items-center justify-between" style={{ padding: '3vh 4vw' }}>
+          <div>
+            <p style={{ fontSize: '2vw' }} className="text-slate-500 uppercase tracking-[0.4em] mb-1">Identified</p>
+            <p style={{ fontSize: '5vw' }} className="font-black text-white tracking-tight leading-none">2026 BMW X3</p>
+          </div>
+          <div className="bg-white rounded-2xl shrink-0" style={{ padding: '2vh 3vw' }}>
+            <p style={{ fontSize: '1.5vw' }} className="font-bold text-slate-500 tracking-[0.3em] uppercase text-center">Kentucky</p>
+            <p style={{ fontSize: '4.5vw' }} className="font-black text-slate-900 tracking-wider font-mono leading-none">DRBY-1</p>
           </div>
         </div>
+      </motion.div>
+    </motion.div>
+  );
+}
 
-        {/* VEHICLE INFO */}
-        <div className="relative z-10 bg-slate-800/80 backdrop-blur-xl rounded-[3rem] p-8 border border-slate-700/50 flex justify-between items-center shadow-2xl mt-2">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-slate-700 via-slate-500 to-slate-700"></div>
-          <div className="flex flex-col">
-            <p className="text-3xl text-slate-400 font-medium uppercase tracking-widest mb-3">Vehicle Identified</p>
-            <p className="text-6xl font-black text-white tracking-tight drop-shadow-lg">2026 Blue BMW X3</p>
-          </div>
-          
-          {/* License Plate */}
-          <div className="bg-white rounded-[2rem] border-[8px] border-slate-300 px-12 py-6 shadow-inner flex flex-col items-center justify-center relative overflow-hidden shrink-0">
-            {/* Plate Bolts */}
-            <div className="absolute top-3 left-0 right-0 flex justify-between px-8">
-              <span className="w-5 h-5 rounded-full bg-slate-400 shadow-inner"></span>
-              <span className="w-5 h-5 rounded-full bg-slate-400 shadow-inner"></span>
-            </div>
-            <div className="absolute bottom-3 left-0 right-0 flex justify-between px-8">
-              <span className="w-5 h-5 rounded-full bg-slate-400 shadow-inner"></span>
-              <span className="w-5 h-5 rounded-full bg-slate-400 shadow-inner"></span>
-            </div>
-            {/* Plate Text */}
-            <p className="text-2xl font-bold text-red-600 tracking-[0.3em] uppercase mb-1">Kentucky</p>
-            <p className="text-7xl font-black text-slate-800 tracking-[0.15em] font-mono mt-1">DRBY-1</p>
-          </div>
-        </div>
+function SceneInsight() {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+      className="absolute inset-0 flex flex-col items-center justify-center"
+    >
+      <motion.div
+        initial={{ scale: 0.6, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ type: 'spring', stiffness: 50, delay: 0.2 }}
+        className="text-center"
+      >
+        <p style={{ fontSize: '5vw' }} className="text-slate-500 font-light tracking-widest uppercase mb-4">It's been</p>
+        <p style={{ fontSize: '45vw', lineHeight: 0.85 }} className="font-black text-[#FF6900]">12</p>
+        <p style={{ fontSize: '14vw', lineHeight: 0.9 }} className="font-black text-white uppercase tracking-tight -mt-2">Days</p>
+      </motion.div>
 
-        {/* SERVICE STATUS */}
-        <div className="relative z-10 grid grid-cols-2 gap-8 w-full mt-2">
-          {/* Last Wash Card */}
-          <div className="bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-xl rounded-[3rem] p-8 border border-slate-700 shadow-2xl flex flex-col items-center justify-center text-center">
-            <Calendar className="w-16 h-16 text-slate-400 mb-4" strokeWidth={1.5} />
-            <p className="text-3xl text-slate-300 font-medium mb-2">Service History</p>
-            <p className="text-4xl font-bold text-white leading-snug">
-              Your last wash was
-              <span className="text-6xl text-amber-500 block mt-2 font-black drop-shadow-md">12 Days Ago</span>
-            </p>
-          </div>
-          
-          {/* Recommendation Card */}
-          <div className="bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-xl rounded-[3rem] p-8 border border-slate-700 shadow-2xl flex flex-col items-center justify-center text-center">
-            <ShieldAlert className="w-16 h-16 text-blue-400 mb-4" strokeWidth={1.5} />
-            <p className="text-3xl text-slate-300 font-medium mb-2">Recommendation</p>
-            <p className="text-4xl font-bold text-white leading-snug">
-              Your vehicle has never used our
-              <span className="text-6xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 block mt-2 font-black drop-shadow-md">Ceramic Shield</span>
-            </p>
-          </div>
-        </div>
+      <motion.div
+        initial={{ y: 40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 1.2 }}
+        className="mt-8"
+      >
+        <p style={{ fontSize: '4vw' }} className="text-slate-400 text-center font-light">since your last wash</p>
+      </motion.div>
 
-        {/* SAVINGS BANNER */}
-        <div className="relative z-10 bg-gradient-to-r from-emerald-900/80 via-emerald-800/90 to-emerald-900/80 backdrop-blur-xl rounded-[3rem] p-8 border border-emerald-600/50 shadow-[0_0_50px_rgba(16,185,129,0.15)] flex flex-col items-center mt-2">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-400/20 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-600/20 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
-          
-          <h3 className="text-4xl text-emerald-400 font-bold uppercase tracking-widest text-center mb-6 z-10">
-            With a Membership, you would have saved:
-          </h3>
-          
-          <div className="flex justify-around items-center w-full z-10">
-            <div className="flex flex-col items-center">
-              <p className="text-3xl text-emerald-200/80 font-medium uppercase tracking-widest mb-2">Last 30 Days</p>
-              <p className="text-[5rem] font-black text-white tracking-tight drop-shadow-xl leading-none">$35.00</p>
-            </div>
-            <div className="w-1 h-24 bg-emerald-700/50 rounded-full"></div>
-            <div className="flex flex-col items-center">
-              <p className="text-3xl text-emerald-200/80 font-medium uppercase tracking-widest mb-2">Previous 90 Days</p>
-              <p className="text-[5rem] font-black text-white tracking-tight drop-shadow-xl leading-none">$105.00</p>
-            </div>
-          </div>
-        </div>
+      <motion.div
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, delay: 2 }}
+        className="mt-8 bg-[#FF6900]/10 border border-[#FF6900]/30 rounded-2xl"
+        style={{ padding: '2vh 5vw' }}
+      >
+        <p style={{ fontSize: '3.5vw' }} className="text-white font-semibold text-center">
+          Time for a <span className="text-[#FF6900] font-black">Ceramic Shield</span>
+        </p>
+      </motion.div>
+    </motion.div>
+  );
+}
 
-        {/* TIRE TREAD STATUS */}
-        <div className="relative z-10 flex-1 bg-gradient-to-br from-slate-800/90 via-slate-900/95 to-slate-950/90 backdrop-blur-2xl rounded-[3rem] border border-slate-700/80 p-8 flex flex-col overflow-hidden shadow-2xl mt-2 min-h-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-[#FF6900]/5 to-transparent pointer-events-none"></div>
-          
-          <h2 className="text-5xl font-black text-white tracking-widest uppercase text-center mb-8 relative z-10 drop-shadow-lg">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-[#FF6900]">Tire Tread</span> Analysis
-          </h2>
+function SceneSavings() {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+      className="absolute inset-0 flex flex-col items-center justify-center"
+    >
+      <motion.div
+        initial={{ y: 40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, delay: 0.2 }}
+      >
+        <p style={{ fontSize: '5vw' }} className="text-emerald-400 font-semibold uppercase tracking-[0.2em] text-center">
+          You'd have saved
+        </p>
+      </motion.div>
 
-          <div className="relative flex-1 w-full flex items-center justify-center mt-4">
-            
-            {/* The Top-Down Car Image */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1 }}
-              className="absolute inset-0 flex justify-center items-center pointer-events-none"
-            >
-              <img 
-                src={carTopView} 
-                alt="Vehicle Top View" 
-                className="h-full object-contain opacity-90 drop-shadow-[0_0_50px_rgba(255,105,0,0.15)]"
-              />
-            </motion.div>
-            
-            {/* Tire Indicators Overlay */}
-            <div className="absolute inset-0 z-20 pointer-events-none">
-              
-              {/* Front Left (Barely Good) */}
-              <motion.div
-                animate={{ scale: [1, 1.02, 1] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-[8%] left-[2%] bg-emerald-500/10 backdrop-blur-xl border-2 border-emerald-500/50 rounded-[2rem] p-5 shadow-[0_0_30px_rgba(16,185,129,0.2)] flex items-center gap-4"
-              >
-                <CheckCircle2 className="w-12 h-12 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
-                <div className="text-left">
-                  <p className="text-xl font-bold text-emerald-400 uppercase tracking-widest mb-1">Front Left</p>
-                  <p className="text-4xl font-black text-white">5/32"</p>
-                </div>
-              </motion.div>
+      <motion.div
+        initial={{ scale: 0.2, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ type: 'spring', stiffness: 40, damping: 10, delay: 0.5 }}
+        className="text-center"
+      >
+        <p style={{ fontSize: '50vw', lineHeight: 0.85 }} className="font-black tracking-tighter">
+          <span className="text-emerald-400">$</span>
+          <span className="text-white">105</span>
+        </p>
+      </motion.div>
 
-              {/* Front Right (Low/Danger) */}
-              <motion.div
-                animate={{
-                  scale: [1, 1.05, 1],
-                  boxShadow: ['0 0 20px rgba(239,68,68,0)', '0 0 50px rgba(239,68,68,0.4)', '0 0 20px rgba(239,68,68,0)']
-                }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-[8%] right-[2%] bg-red-500/10 backdrop-blur-xl border-2 border-red-500/80 rounded-[2rem] p-5 shadow-[0_0_40px_rgba(239,68,68,0.4)] flex items-center gap-4 overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-red-500/10 animate-pulse pointer-events-none"></div>
-                <div className="text-right">
-                  <p className="text-xl font-bold text-red-400 uppercase tracking-widest mb-1 flex justify-end items-center gap-2">
-                    <span className="bg-red-500 text-white px-2 py-0.5 rounded-md text-sm animate-pulse">LOW</span>
-                    Front Right
-                  </p>
-                  <p className="text-4xl font-black text-white">3/32"</p>
-                </div>
-                <AlertTriangle className="w-12 h-12 text-red-500 drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]" />
-              </motion.div>
+      <motion.div
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, delay: 1.2 }}
+      >
+        <p style={{ fontSize: '4.5vw' }} className="text-emerald-300/70 font-medium text-center uppercase tracking-[0.3em]">
+          In 90 days
+        </p>
+      </motion.div>
+    </motion.div>
+  );
+}
 
-              {/* Rear Left (Low/Danger) */}
-              <motion.div
-                animate={{
-                  scale: [1, 1.05, 1],
-                  boxShadow: ['0 0 20px rgba(239,68,68,0)', '0 0 50px rgba(239,68,68,0.4)', '0 0 20px rgba(239,68,68,0)']
-                }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-[8%] left-[2%] bg-red-500/10 backdrop-blur-xl border-2 border-red-500/80 rounded-[2rem] p-5 shadow-[0_0_40px_rgba(239,68,68,0.4)] flex items-center gap-4 overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-red-500/10 animate-pulse pointer-events-none"></div>
-                <AlertTriangle className="w-12 h-12 text-red-500 drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]" />
-                <div className="text-left">
-                  <p className="text-xl font-bold text-red-400 uppercase tracking-widest mb-1 flex items-center gap-2">
-                    <span className="bg-red-500 text-white px-2 py-0.5 rounded-md text-sm animate-pulse">LOW</span>
-                    Rear Left
-                  </p>
-                  <p className="text-4xl font-black text-white">3/32"</p>
-                </div>
-              </motion.div>
-
-              {/* Rear Right (Low/Danger) */}
-              <motion.div
-                animate={{
-                  scale: [1, 1.05, 1],
-                  boxShadow: ['0 0 20px rgba(239,68,68,0)', '0 0 50px rgba(239,68,68,0.4)', '0 0 20px rgba(239,68,68,0)']
-                }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-                className="absolute bottom-[8%] right-[2%] bg-red-500/10 backdrop-blur-xl border-2 border-red-500/80 rounded-[2rem] p-5 shadow-[0_0_40px_rgba(239,68,68,0.4)] flex items-center gap-4 overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-red-500/10 animate-pulse pointer-events-none"></div>
-                <div className="text-right">
-                  <p className="text-xl font-bold text-red-400 uppercase tracking-widest mb-1 flex justify-end items-center gap-2">
-                    <span className="bg-red-500 text-white px-2 py-0.5 rounded-md text-sm animate-pulse">LOW</span>
-                    Rear Right
-                  </p>
-                  <p className="text-4xl font-black text-white">2/32"</p>
-                </div>
-                <AlertTriangle className="w-12 h-12 text-red-500 drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]" />
-              </motion.div>
-            </div>
-          </div>
-        </div>
-
-        {/* BOTTOM ANIMATED BANNER */}
-        <motion.div 
-          animate={{ 
-            backgroundColor: ['rgba(255,105,0,0.85)', 'rgba(245,158,11,0.85)', 'rgba(255,105,0,0.85)']
-          }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="relative z-10 w-full rounded-[3rem] py-6 px-8 border-2 border-amber-300/50 shadow-[0_0_60px_rgba(255,105,0,0.5)] flex items-center justify-center gap-8 mt-0 overflow-hidden shrink-0"
+function SceneTireAlert() {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+      className="absolute inset-0 flex flex-col items-center justify-center"
+    >
+      <motion.div
+        initial={{ scale: 0.5, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ type: 'spring', stiffness: 70, delay: 0.2 }}
+        className="text-center"
+      >
+        <motion.div
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="mb-4"
         >
-          <motion.div 
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"
-            animate={{ x: ['-200%', '200%'] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          />
-          
-          <motion.div animate={{ rotate: 360, scale: [1, 1.2, 1] }} transition={{ duration: 4, repeat: Infinity, ease: "linear" }}>
-            <Sparkles className="w-16 h-16 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]" />
-          </motion.div>
-          
-          <h1 className="text-4xl font-black text-white uppercase tracking-widest text-center drop-shadow-xl z-10">
-            ASK DUSTIN TO PLAY A GAME & <span className="text-amber-200">WIN BIG!</span>
-          </h1>
-          
-          <motion.div animate={{ rotate: -360, scale: [1, 1.2, 1] }} transition={{ duration: 4, repeat: Infinity, ease: "linear" }}>
-            <Sparkles className="w-16 h-16 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]" />
-          </motion.div>
+          <AlertTriangle style={{ width: '15vw', height: '15vw' }} className="text-red-500 mx-auto" />
         </motion.div>
+        <p style={{ fontSize: '10vw', lineHeight: 0.95 }} className="font-black text-white uppercase tracking-tight">
+          Your Tires
+        </p>
+        <p style={{ fontSize: '10vw', lineHeight: 0.95 }} className="font-black text-red-500 uppercase tracking-tight">
+          Need Attention
+        </p>
+      </motion.div>
 
-      </div>
+      <motion.div
+        initial={{ y: 40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, delay: 0.8 }}
+        className="relative mx-auto my-4"
+        style={{ width: '55vw', aspectRatio: '9/14' }}
+      >
+        <div className="relative h-full w-full">
+          <img src={carTopView} alt="Vehicle" className="w-full h-full object-contain opacity-90" />
+          <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ clipPath: 'inset(5% 12% 5% 12%)' }}>
+            <motion.div
+              animate={{ x: ['-120%', '220%'] }}
+              transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, ease: 'easeInOut' }}
+              className="absolute inset-y-0 w-1/3 skew-x-[-20deg]"
+              style={{ background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%)', filter: 'blur(6px)' }}
+            />
+          </div>
+        </div>
+        <motion.div animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 1.2, repeat: Infinity }}
+          className="absolute top-[8%] right-[0%] bg-red-500 rounded-xl" style={{ padding: '1vh 2vw' }}>
+          <span className="text-white font-black" style={{ fontSize: '2.5vw' }}>3/32"</span>
+        </motion.div>
+        <motion.div animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 1.2, repeat: Infinity, delay: 0.3 }}
+          className="absolute bottom-[8%] left-[0%] bg-red-500 rounded-xl" style={{ padding: '1vh 2vw' }}>
+          <span className="text-white font-black" style={{ fontSize: '2.5vw' }}>3/32"</span>
+        </motion.div>
+        <motion.div animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 1.2, repeat: Infinity, delay: 0.6 }}
+          className="absolute bottom-[8%] right-[0%] bg-red-500 rounded-xl" style={{ padding: '1vh 2vw' }}>
+          <span className="text-white font-black" style={{ fontSize: '2.5vw' }}>2/32"</span>
+        </motion.div>
+        <div className="absolute top-[8%] left-[0%] bg-emerald-600 rounded-xl" style={{ padding: '1vh 2vw' }}>
+          <span className="text-white font-black" style={{ fontSize: '2.5vw' }}>5/32"</span>
+        </div>
+      </motion.div>
+
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, delay: 1.5 }}
+      >
+        <p style={{ fontSize: '7vw' }} className="text-red-400 text-center font-black uppercase tracking-wider">
+          3 of 4 Critical
+        </p>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function SceneCTA() {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+      className="absolute inset-0 flex flex-col items-center justify-center"
+    >
+      <motion.div
+        initial={{ scale: 0, rotate: -180 }}
+        animate={{ scale: 1, rotate: 0 }}
+        transition={{ type: 'spring', stiffness: 50, delay: 0.2 }}
+      >
+        <motion.div animate={{ rotate: 360 }} transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}>
+          <Sparkles style={{ width: '20vw', height: '20vw' }} className="text-[#FF6900]" />
+        </motion.div>
+      </motion.div>
+
+      <motion.div
+        initial={{ y: 60, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
+        className="text-center mt-4"
+      >
+        <p style={{ fontSize: '10vw', lineHeight: 0.95 }} className="font-black text-white uppercase tracking-tight">
+          Ask Dustin
+        </p>
+        <p style={{ fontSize: '10vw', lineHeight: 0.95 }} className="font-black text-white uppercase tracking-tight">
+          to Play
+        </p>
+      </motion.div>
+
+      <motion.div
+        initial={{ scale: 0.5, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ type: 'spring', stiffness: 50, delay: 1 }}
+        className="mt-8"
+      >
+        <motion.div
+          animate={{ scale: [1, 1.08, 1] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="bg-[#FF6900] rounded-[2rem]"
+          style={{ padding: '4vh 8vw' }}
+        >
+          <p style={{ fontSize: '12vw', lineHeight: 1 }} className="font-black text-white uppercase tracking-tight text-center">
+            Win Big!
+          </p>
+        </motion.div>
+      </motion.div>
+
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }} className="mt-10">
+        <Logo size="lg" />
+      </motion.div>
+    </motion.div>
+  );
+}
+
+const scenes = [SceneWelcome, SceneInsight, SceneSavings, SceneTireAlert, SceneCTA];
+
+export function DigitalSign() {
+  const [sceneIndex, setSceneIndex] = useState(0);
+
+  useEffect(() => {
+    document.documentElement.style.margin = '0';
+    document.documentElement.style.padding = '0';
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.margin = '0';
+    document.body.style.padding = '0';
+    document.body.style.overflow = 'hidden';
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSceneIndex((i) => (i + 1) % SCENE_COUNT);
+    }, SCENE_DURATION);
+    return () => clearInterval(timer);
+  }, []);
+
+  const CurrentScene = scenes[sceneIndex];
+
+  return (
+    <div
+      className="bg-slate-950 overflow-hidden select-none"
+      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
+    >
+      <AnimatedBG />
+      <AnimatePresence mode="wait">
+        <CurrentScene key={sceneIndex} />
+      </AnimatePresence>
     </div>
   );
 }
