@@ -98,10 +98,11 @@ function SceneVehicleScan() {
     return () => timers.forEach(clearTimeout);
   }, []);
 
-  const redPulse = (delay: number) => ({
-    animate: { opacity: [1, 0.5, 1], boxShadow: ['0 0 0px rgba(239,68,68,0)', '0 0 22px rgba(239,68,68,0.7)', '0 0 0px rgba(239,68,68,0)'] },
-    transition: { duration: 1.2, repeat: Infinity, delay, ease: 'easeInOut' as const },
-  });
+  // All three red badges pulse in unison — consistent, slow, subtle.
+  const redPulse = {
+    animate: { boxShadow: ['0 0 8px rgba(239,68,68,0.3)', '0 0 24px rgba(239,68,68,0.7)', '0 0 8px rgba(239,68,68,0.3)'] },
+    transition: { duration: 2.5, repeat: Infinity, ease: 'easeInOut' as const },
+  };
 
   return (
     <motion.div {...crossfade} className="absolute inset-0 flex flex-col" style={{ padding: '2vh 5vw' }}>
@@ -207,7 +208,7 @@ function SceneVehicleScan() {
                       className="absolute"
                       style={{ top: '26%', right: '3%' }}
                     >
-                      <motion.div {...redPulse(0)} className="bg-red-950/80 border-2 border-red-500 rounded-xl flex items-center gap-3" style={{ padding: '1.5vh 2vw' }}>
+                      <motion.div {...redPulse} className="bg-red-950/80 border-2 border-red-500 rounded-xl flex items-center gap-3" style={{ padding: '1.5vh 2vw' }}>
                         <div className="text-right">
                           <div className="flex justify-end items-center gap-2 mb-1">
                             <span className="bg-red-500 text-white rounded font-bold" style={{ fontSize: '1.4vw', padding: '0.2vh 0.8vw' }}>LOW</span>
@@ -227,7 +228,7 @@ function SceneVehicleScan() {
                       className="absolute"
                       style={{ bottom: '24%', right: '3%' }}
                     >
-                      <motion.div {...redPulse(0.4)} className="bg-red-950/80 border-2 border-red-500 rounded-xl flex items-center gap-3 relative" style={{ padding: '1.5vh 2vw' }}>
+                      <motion.div {...redPulse} className="bg-red-950/80 border-2 border-red-500 rounded-xl flex items-center gap-3 relative" style={{ padding: '1.5vh 2vw' }}>
                         <div className="text-right">
                           <div className="flex justify-end items-center gap-2 mb-1">
                             <span className="bg-red-500 text-white rounded font-bold" style={{ fontSize: '1.4vw', padding: '0.2vh 0.8vw' }}>LOW</span>
@@ -236,11 +237,6 @@ function SceneVehicleScan() {
                           <p style={{ fontSize: '3.5vw', lineHeight: 1 }} className="font-black text-white text-right">2/32"</p>
                         </div>
                         <AlertTriangle style={{ width: '3.5vw', height: '3.5vw' }} className="text-red-500" />
-                        <motion.div
-                          animate={{ scale: [1, 1.4], opacity: [0.6, 0] }}
-                          transition={{ duration: 1.6, repeat: Infinity, ease: 'easeOut' }}
-                          className="absolute inset-0 rounded-xl border-2 border-red-400 pointer-events-none"
-                        />
                       </motion.div>
                     </motion.div>
 
@@ -252,7 +248,7 @@ function SceneVehicleScan() {
                       className="absolute"
                       style={{ bottom: '24%', left: '3%' }}
                     >
-                      <motion.div {...redPulse(0.2)} className="bg-red-950/80 border-2 border-red-500 rounded-xl flex items-center gap-3" style={{ padding: '1.5vh 2vw' }}>
+                      <motion.div {...redPulse} className="bg-red-950/80 border-2 border-red-500 rounded-xl flex items-center gap-3" style={{ padding: '1.5vh 2vw' }}>
                         <AlertTriangle style={{ width: '3.5vw', height: '3.5vw' }} className="text-red-500" />
                         <div className="text-left">
                           <div className="flex items-center gap-2 mb-1">
@@ -318,7 +314,7 @@ function SceneInsight() {
   return (
     <motion.div {...crossfade} className="absolute inset-0 flex flex-col items-center justify-center">
       <motion.div initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', stiffness: 50, delay: 0.1 }} className="text-center">
-        <p style={{ fontSize: '5vw' }} className="text-slate-500 font-light tracking-widest uppercase mb-4">It's been</p>
+        <p style={{ fontSize: '4vw', letterSpacing: '0.35em' }} className="text-slate-400 font-semibold uppercase mb-4">It's been</p>
         <p style={{ fontSize: '38vw', lineHeight: 0.85 }} className="font-black text-[#FF6900]">{count}</p>
         <p style={{ fontSize: '12vw', lineHeight: 0.9 }} className="font-black text-white uppercase tracking-tight -mt-2">Days</p>
       </motion.div>
@@ -338,7 +334,7 @@ function SceneSavings() {
   return (
     <motion.div {...crossfade} className="absolute inset-0 flex flex-col items-center justify-center">
       <motion.div initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6, delay: 0.2 }}>
-        <p style={{ fontSize: '4.5vw' }} className="text-emerald-400 font-semibold uppercase tracking-[0.2em] text-center">You'd have saved</p>
+        <p style={{ fontSize: '4vw', letterSpacing: '0.35em' }} className="text-emerald-400 font-semibold uppercase text-center">You'd have saved</p>
       </motion.div>
       <motion.div initial={{ scale: 0.3, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', stiffness: 40, damping: 10, delay: 0.4 }} className="text-center">
         <motion.p animate={{ scale: [1, 1.02, 1] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }} style={{ fontSize: '32vw', lineHeight: 0.9 }} className="font-black tracking-tighter">
@@ -411,12 +407,12 @@ function SceneCTA() {
       </div>
 
       <motion.div initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.7, delay: 0.4 }} className="text-center mt-6">
-        <p style={{ fontSize: '4vw' }} className="text-slate-400 font-medium uppercase tracking-[0.4em]">Meet your AI assistant</p>
+        <p style={{ fontSize: '4vw', letterSpacing: '0.35em' }} className="text-slate-400 font-semibold uppercase">Meet your AI assistant</p>
         <p style={{ fontSize: '14vw', lineHeight: 0.9 }} className="font-black text-white uppercase tracking-tight mt-2">Dustin</p>
       </motion.div>
 
       <motion.div initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6, delay: 0.9 }} className="mt-4 text-center px-6">
-        <p style={{ fontSize: '3vw' }} className="text-slate-300 font-medium leading-snug">
+        <p style={{ fontSize: '4vw' }} className="text-slate-300 font-medium leading-snug">
           Ready to play?
         </p>
       </motion.div>
