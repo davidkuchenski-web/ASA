@@ -55,10 +55,10 @@ function SceneWelcome() {
         transition={{ duration: 0.6, delay: 0.5 }}
         className="mt-12 text-center"
       >
-        <h1 className="text-7xl font-black text-[#FF6900] uppercase tracking-widest mb-4">
+        <h1 className="text-8xl font-black text-[#FF6900] uppercase tracking-widest mb-4">
           Welcome Back
         </h1>
-        <div className="w-32 h-1 bg-[#FF6900]/50 mx-auto rounded-full mb-8" />
+        <div className="w-40 h-1 bg-[#FF6900]/50 mx-auto rounded-full mb-8" />
       </motion.div>
 
       <motion.div
@@ -87,7 +87,7 @@ function SceneInsight() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8 }}
-      className="absolute inset-0 flex flex-col items-center justify-center px-16"
+      className="absolute inset-0 flex flex-col items-center justify-center px-10"
     >
       <motion.div
         initial={{ y: 40, opacity: 0 }}
@@ -95,18 +95,18 @@ function SceneInsight() {
         transition={{ duration: 0.7, delay: 0.2 }}
         className="text-center"
       >
-        <p className="text-4xl text-slate-400 font-light mb-6 tracking-wide">Hey — it's been</p>
-        <p className="text-[10rem] font-black text-[#FF6900] leading-none tracking-tight">12 Days</p>
-        <p className="text-4xl text-slate-400 font-light mt-6 tracking-wide">since your last wash</p>
+        <p className="text-5xl text-slate-300 font-light mb-8 tracking-wide">It's been</p>
+        <p className="text-[13rem] font-black text-[#FF6900] leading-none tracking-tight">12 Days</p>
+        <p className="text-5xl text-slate-300 font-light mt-8 tracking-wide">since your last wash</p>
       </motion.div>
 
       <motion.div
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.2 }}
-        className="mt-16 bg-slate-800/40 border border-slate-700/40 rounded-2xl px-10 py-6"
+        className="mt-20"
       >
-        <p className="text-3xl text-white font-medium text-center leading-relaxed">
+        <p className="text-4xl text-white font-medium text-center leading-relaxed">
           Your X3 could use a <span className="text-[#FF6900] font-black">Ceramic Shield</span>
         </p>
       </motion.div>
@@ -121,15 +121,15 @@ function SceneSavings() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8 }}
-      className="absolute inset-0 flex flex-col items-center justify-center px-12"
+      className="absolute inset-0 flex flex-col items-center justify-center px-10"
     >
       <motion.div
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <p className="text-4xl text-emerald-400 font-semibold uppercase tracking-[0.3em] text-center mb-8">
-          With a membership, you'd have saved
+        <p className="text-5xl text-emerald-400 font-semibold uppercase tracking-[0.2em] text-center mb-10">
+          You'd have saved
         </p>
       </motion.div>
 
@@ -139,7 +139,7 @@ function SceneSavings() {
         transition={{ type: 'spring', stiffness: 100, delay: 0.5 }}
         className="text-center"
       >
-        <p className="text-[14rem] font-black text-white leading-none tracking-tight">
+        <p className="text-[16rem] font-black text-white leading-none tracking-tight">
           <span className="text-emerald-400">$</span>105
         </p>
       </motion.div>
@@ -148,21 +148,10 @@ function SceneSavings() {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: 1 }}
-        className="mt-6"
+        className="mt-8"
       >
-        <p className="text-3xl text-emerald-300/80 font-medium text-center tracking-widest uppercase">
+        <p className="text-4xl text-emerald-300/80 font-medium text-center tracking-widest uppercase">
           In the last 90 days
-        </p>
-      </motion.div>
-
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1.5 }}
-        className="mt-12 bg-emerald-900/30 border border-emerald-600/40 rounded-2xl px-10 py-5"
-      >
-        <p className="text-2xl text-emerald-200/80 text-center">
-          That's <span className="font-black text-white">$35.00</span> saved in the last 30 days alone
         </p>
       </motion.div>
     </motion.div>
@@ -176,70 +165,75 @@ function SceneTireAlert() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8 }}
-      className="absolute inset-0 flex flex-col items-center justify-center px-12"
+      className="absolute inset-0 flex flex-col items-center justify-center px-10"
     >
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="flex items-center gap-5 mb-10"
+        className="text-center mb-8"
       >
-        <AlertTriangle className="w-16 h-16 text-red-500" />
-        <p className="text-5xl font-black text-white uppercase tracking-widest">We Noticed Something</p>
+        <AlertTriangle className="w-20 h-20 text-red-500 mx-auto mb-6" />
+        <p className="text-6xl font-black text-white uppercase tracking-widest leading-tight">
+          Your Tires Need
+        </p>
+        <p className="text-6xl font-black text-red-500 uppercase tracking-widest leading-tight">
+          Replacing
+        </p>
       </motion.div>
 
       <motion.div
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.5 }}
-        className="relative w-full max-w-lg aspect-[9/14] mx-auto"
+        transition={{ duration: 0.6, delay: 0.6 }}
+        className="relative w-full max-w-md mx-auto"
+        style={{ aspectRatio: '9/14' }}
       >
-        <img src={carTopView} alt="Vehicle" className="w-full h-full object-contain opacity-90" />
-        <motion.div
-          className="absolute inset-0 overflow-hidden mix-blend-screen pointer-events-none"
-        >
-          <motion.div
-            animate={{ x: ['-120%', '220%'] }}
-            transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, ease: 'easeInOut' }}
-            className="absolute inset-y-0 w-1/3 skew-x-[-20deg]"
-            style={{
-              background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%)',
-              filter: 'blur(6px)',
-            }}
-          />
-        </motion.div>
+        <div className="relative h-full w-full">
+          <img src={carTopView} alt="Vehicle" className="w-full h-full object-contain opacity-90" />
+          <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ clipPath: 'inset(5% 15% 5% 15%)' }}>
+            <motion.div
+              animate={{ x: ['-120%', '220%'] }}
+              transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, ease: 'easeInOut' }}
+              className="absolute inset-y-0 w-1/3 skew-x-[-20deg]"
+              style={{
+                background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%)',
+                filter: 'blur(6px)',
+              }}
+            />
+          </div>
+        </div>
 
-        {/* Tire badges */}
         <motion.div
           animate={{ opacity: [1, 0.6, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="absolute top-[10%] right-[2%] bg-red-950/80 border border-red-500 rounded-xl px-4 py-3 flex items-center gap-2"
+          className="absolute top-[10%] right-[0%] bg-red-950/80 border border-red-500 rounded-xl px-3 py-2 flex items-center gap-2"
         >
           <span className="bg-red-500 text-white px-2 py-0.5 rounded text-xs font-bold">LOW</span>
-          <span className="text-white font-black text-2xl">3/32"</span>
+          <span className="text-white font-black text-xl">3/32"</span>
         </motion.div>
 
         <motion.div
           animate={{ opacity: [1, 0.6, 1] }}
           transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-          className="absolute bottom-[10%] left-[2%] bg-red-950/80 border border-red-500 rounded-xl px-4 py-3 flex items-center gap-2"
+          className="absolute bottom-[10%] left-[0%] bg-red-950/80 border border-red-500 rounded-xl px-3 py-2 flex items-center gap-2"
         >
           <span className="bg-red-500 text-white px-2 py-0.5 rounded text-xs font-bold">LOW</span>
-          <span className="text-white font-black text-2xl">3/32"</span>
+          <span className="text-white font-black text-xl">3/32"</span>
         </motion.div>
 
         <motion.div
           animate={{ opacity: [1, 0.6, 1] }}
           transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-          className="absolute bottom-[10%] right-[2%] bg-red-950/80 border border-red-500 rounded-xl px-4 py-3 flex items-center gap-2"
+          className="absolute bottom-[10%] right-[0%] bg-red-950/80 border border-red-500 rounded-xl px-3 py-2 flex items-center gap-2"
         >
           <span className="bg-red-500 text-white px-2 py-0.5 rounded text-xs font-bold">LOW</span>
-          <span className="text-white font-black text-2xl">2/32"</span>
+          <span className="text-white font-black text-xl">2/32"</span>
         </motion.div>
 
-        <div className="absolute top-[10%] left-[2%] bg-slate-900/70 border border-emerald-500/50 rounded-xl px-4 py-3 flex items-center gap-2">
-          <span className="text-emerald-400 font-bold text-sm">OK</span>
-          <span className="text-white font-black text-2xl">5/32"</span>
+        <div className="absolute top-[10%] left-[0%] bg-slate-900/70 border border-emerald-500/50 rounded-xl px-3 py-2 flex items-center gap-2">
+          <span className="text-emerald-400 font-bold text-xs">OK</span>
+          <span className="text-white font-black text-xl">5/32"</span>
         </div>
       </motion.div>
 
@@ -249,8 +243,8 @@ function SceneTireAlert() {
         transition={{ duration: 0.6, delay: 1.2 }}
         className="mt-8"
       >
-        <p className="text-3xl text-slate-300 text-center font-medium">
-          3 of 4 tires are in the <span className="text-red-400 font-black">danger zone</span>
+        <p className="text-4xl text-red-400 text-center font-black uppercase tracking-widest">
+          3 of 4 tires critical
         </p>
       </motion.div>
     </motion.div>
@@ -285,10 +279,10 @@ function SceneCTA() {
         transition={{ duration: 0.7, delay: 0.5 }}
         className="mt-10 text-center"
       >
-        <p className="text-5xl font-black text-white uppercase tracking-widest leading-tight">
+        <p className="text-6xl font-black text-white uppercase tracking-widest leading-tight">
           Ask Dustin
         </p>
-        <p className="text-5xl font-black text-white uppercase tracking-widest leading-tight mt-2">
+        <p className="text-6xl font-black text-white uppercase tracking-widest leading-tight mt-2">
           To Play a Game
         </p>
       </motion.div>
@@ -304,7 +298,7 @@ function SceneCTA() {
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           className="bg-[#FF6900] rounded-3xl px-16 py-8 shadow-lg"
         >
-          <p className="text-6xl font-black text-white uppercase tracking-widest text-center">
+          <p className="text-7xl font-black text-white uppercase tracking-widest text-center">
             & Win Big!
           </p>
         </motion.div>
