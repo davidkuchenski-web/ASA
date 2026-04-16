@@ -190,7 +190,7 @@ function SceneVehicleScan() {
                       animate={{ scale: 0.85, opacity: 0.55 }}
                       transition={{ type: 'spring', stiffness: 200, delay: 0 }}
                       className="absolute bg-slate-900/70 border border-emerald-500/60 rounded-xl flex items-center gap-2"
-                      style={{ top: '4%', left: '0%', padding: '1vh 1.5vw' }}
+                      style={{ top: '18%', left: '15%', padding: '1vh 1.5vw' }}
                     >
                       <Check style={{ width: '2vw', height: '2vw' }} className="text-emerald-400" strokeWidth={3} />
                       <div className="text-left">
@@ -205,7 +205,7 @@ function SceneVehicleScan() {
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ type: 'spring', stiffness: 200, delay: 0.1 }}
                       className="absolute"
-                      style={{ top: '4%', right: '0%' }}
+                      style={{ top: '18%', right: '15%' }}
                     >
                       <motion.div {...redPulse(0)} className="bg-red-950/70 border border-red-500 rounded-xl flex items-center gap-2" style={{ padding: '1vh 1.5vw' }}>
                         <div className="text-right">
@@ -225,7 +225,7 @@ function SceneVehicleScan() {
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
                       className="absolute"
-                      style={{ bottom: '4%', right: '0%' }}
+                      style={{ bottom: '18%', right: '15%' }}
                     >
                       <motion.div {...redPulse(0.4)} className="bg-red-950/70 border border-red-500 rounded-xl flex items-center gap-2 relative" style={{ padding: '1vh 1.5vw' }}>
                         <div className="text-right">
@@ -250,7 +250,7 @@ function SceneVehicleScan() {
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ type: 'spring', stiffness: 200, delay: 0.3 }}
                       className="absolute"
-                      style={{ bottom: '4%', left: '0%' }}
+                      style={{ bottom: '18%', left: '15%' }}
                     >
                       <motion.div {...redPulse(0.2)} className="bg-red-950/70 border border-red-500 rounded-xl flex items-center gap-2" style={{ padding: '1vh 1.5vw' }}>
                         <AlertTriangle style={{ width: '2.5vw', height: '2.5vw' }} className="text-red-500" />
