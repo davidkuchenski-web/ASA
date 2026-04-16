@@ -448,6 +448,10 @@ function SceneCTA() {
           </p>
         </motion.div>
       </motion.div>
+
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 1.8 }} className="mt-10">
+        <Logo size="lg" />
+      </motion.div>
     </motion.div>
   );
 }
