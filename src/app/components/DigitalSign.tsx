@@ -73,10 +73,10 @@ function SceneLogo() {
   return (
     <motion.div {...crossfade} className="absolute inset-0 flex items-center justify-center">
       <motion.div
-        initial={{ scale: 0.7, opacity: 0 }}
+        initial={{ scale: 0.5, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: 'spring', stiffness: 60 }}
-        style={{ transform: 'scale(2.5)' }}
+        transition={{ type: 'spring', stiffness: 50 }}
+        style={{ transform: 'scale(4)' }}
       >
         <Logo size="xl" />
       </motion.div>
@@ -165,100 +165,110 @@ function SceneVehicleScan() {
         </div>
       </div>
 
-      {/* CENTER — Hero vehicle (50%) */}
-      <div className="relative flex items-center justify-center" style={{ height: '50%' }}>
+      {/* CENTER — Tire tread card (50%) */}
+      <div className="flex items-center justify-center" style={{ height: '50%', padding: '1vh 0' }}>
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: stage >= 1 ? 1 : 0 }}
-          transition={{ duration: 0.6 }}
-          className="relative h-full"
-          style={{ aspectRatio: '9/14' }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: stage >= 1 ? 1 : 0, y: stage >= 1 ? 0 : 10 }}
+          transition={{ duration: 0.5 }}
+          className="relative w-full h-full bg-slate-800/60 border border-slate-700/60 rounded-[2rem] shadow-xl flex flex-col"
+          style={{ padding: '2vh 3vw' }}
         >
-          <img src={carTopView} alt="Vehicle" className="h-full w-full object-contain" />
-          {/* Glisten on hood only (top 15-30% of car) */}
-          <div className="absolute left-0 right-0 overflow-hidden pointer-events-none" style={{ top: '15%', height: '15%', clipPath: 'inset(0 18% 0 18%)' }}>
-            <motion.div
-              animate={{ x: ['-120%', '220%'] }}
-              transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 3.5, ease: 'easeInOut' }}
-              className="absolute inset-y-0 w-1/2 skew-x-[-20deg]"
-              style={{ background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0) 100%)', filter: 'blur(5px)' }}
-            />
-          </div>
-          {/* Glisten on roof only (40-55% of car) */}
-          <div className="absolute left-0 right-0 overflow-hidden pointer-events-none" style={{ top: '40%', height: '17%', clipPath: 'inset(0 22% 0 22%)' }}>
-            <motion.div
-              animate={{ x: ['-120%', '220%'] }}
-              transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 3.5, ease: 'easeInOut', delay: 0.8 }}
-              className="absolute inset-y-0 w-1/2 skew-x-[-20deg]"
-              style={{ background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%)', filter: 'blur(5px)' }}
-            />
-          </div>
+          <h2 style={{ fontSize: '3.5vw' }} className="font-black text-white tracking-widest uppercase text-center">
+            <span className="text-[#FF6900]">Tire Tread</span> Analysis
+          </h2>
 
-          <AnimatePresence>
-            {stage >= 4 && (
-              <>
-                {/* Front Left — healthy */}
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 0.85, opacity: 0.6 }}
-                  transition={{ type: 'spring', stiffness: 200, delay: 0 }}
-                  className="absolute bg-emerald-600 rounded-xl"
-                  style={{ top: '6%', left: '-8%', padding: '0.7vh 1.5vw' }}
-                >
-                  <span className="text-white font-black" style={{ fontSize: '2vw' }}>5/32"</span>
-                </motion.div>
+          <div className="relative flex-1 w-full flex items-center justify-center">
+            <img src={carTopView} alt="Vehicle" className="h-full object-contain" />
 
-                {/* Front Right */}
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ type: 'spring', stiffness: 200, delay: 0.1 }}
-                  className="absolute"
-                  style={{ top: '6%', right: '-8%' }}
-                >
-                  <motion.div {...redPulse(0)} className="bg-red-500 rounded-xl" style={{ padding: '1vh 2vw' }}>
-                    <span className="text-white font-black" style={{ fontSize: '2.4vw' }}>3/32"</span>
-                  </motion.div>
-                </motion.div>
-
-                {/* Rear Right — worst, extra ring */}
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
-                  className="absolute"
-                  style={{ bottom: '6%', right: '-8%' }}
-                >
-                  <motion.div {...redPulse(0.4)} className="bg-red-500 rounded-xl relative" style={{ padding: '1vh 2vw' }}>
-                    <span className="text-white font-black" style={{ fontSize: '2.4vw' }}>2/32"</span>
+            <div className="absolute inset-0">
+              <AnimatePresence>
+                {stage >= 4 && (
+                  <>
+                    {/* Front Left — healthy */}
                     <motion.div
-                      animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
-                      transition={{ duration: 1.6, repeat: Infinity, ease: 'easeOut' }}
-                      className="absolute inset-0 rounded-xl border-2 border-red-400 pointer-events-none"
-                    />
-                    <motion.div
-                      animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
-                      transition={{ duration: 1.6, repeat: Infinity, ease: 'easeOut', delay: 0.4 }}
-                      className="absolute inset-0 rounded-xl border-2 border-red-400 pointer-events-none"
-                    />
-                  </motion.div>
-                </motion.div>
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 0.85, opacity: 0.55 }}
+                      transition={{ type: 'spring', stiffness: 200, delay: 0 }}
+                      className="absolute bg-slate-900/70 border border-emerald-500/60 rounded-xl flex items-center gap-2"
+                      style={{ top: '4%', left: '0%', padding: '1vh 1.5vw' }}
+                    >
+                      <Check style={{ width: '2vw', height: '2vw' }} className="text-emerald-400" strokeWidth={3} />
+                      <div className="text-left">
+                        <p style={{ fontSize: '1.3vw', letterSpacing: '0.2em' }} className="font-bold text-emerald-400 uppercase">Front Left</p>
+                        <p style={{ fontSize: '2.2vw' }} className="font-black text-white">5/32"</p>
+                      </div>
+                    </motion.div>
 
-                {/* Rear Left */}
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ type: 'spring', stiffness: 200, delay: 0.3 }}
-                  className="absolute"
-                  style={{ bottom: '6%', left: '-8%' }}
-                >
-                  <motion.div {...redPulse(0.2)} className="bg-red-500 rounded-xl" style={{ padding: '1vh 2vw' }}>
-                    <span className="text-white font-black" style={{ fontSize: '2.4vw' }}>3/32"</span>
-                  </motion.div>
-                </motion.div>
-              </>
-            )}
-          </AnimatePresence>
+                    {/* Front Right */}
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ type: 'spring', stiffness: 200, delay: 0.1 }}
+                      className="absolute"
+                      style={{ top: '4%', right: '0%' }}
+                    >
+                      <motion.div {...redPulse(0)} className="bg-red-950/70 border border-red-500 rounded-xl flex items-center gap-2" style={{ padding: '1vh 1.5vw' }}>
+                        <div className="text-right">
+                          <div className="flex justify-end items-center gap-1 mb-0.5">
+                            <span className="bg-red-500 text-white rounded font-bold" style={{ fontSize: '1vw', padding: '0.1vh 0.6vw' }}>LOW</span>
+                            <span style={{ fontSize: '1.3vw', letterSpacing: '0.2em' }} className="font-bold text-red-400 uppercase">Front Right</span>
+                          </div>
+                          <p style={{ fontSize: '2.2vw' }} className="font-black text-white text-right">3/32"</p>
+                        </div>
+                        <AlertTriangle style={{ width: '2.5vw', height: '2.5vw' }} className="text-red-500" />
+                      </motion.div>
+                    </motion.div>
+
+                    {/* Rear Right — worst */}
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
+                      className="absolute"
+                      style={{ bottom: '4%', right: '0%' }}
+                    >
+                      <motion.div {...redPulse(0.4)} className="bg-red-950/70 border border-red-500 rounded-xl flex items-center gap-2 relative" style={{ padding: '1vh 1.5vw' }}>
+                        <div className="text-right">
+                          <div className="flex justify-end items-center gap-1 mb-0.5">
+                            <span className="bg-red-500 text-white rounded font-bold" style={{ fontSize: '1vw', padding: '0.1vh 0.6vw' }}>LOW</span>
+                            <span style={{ fontSize: '1.3vw', letterSpacing: '0.2em' }} className="font-bold text-red-400 uppercase">Rear Right</span>
+                          </div>
+                          <p style={{ fontSize: '2.2vw' }} className="font-black text-white text-right">2/32"</p>
+                        </div>
+                        <AlertTriangle style={{ width: '2.5vw', height: '2.5vw' }} className="text-red-500" />
+                        <motion.div
+                          animate={{ scale: [1, 1.5], opacity: [0.6, 0] }}
+                          transition={{ duration: 1.6, repeat: Infinity, ease: 'easeOut' }}
+                          className="absolute inset-0 rounded-xl border-2 border-red-400 pointer-events-none"
+                        />
+                      </motion.div>
+                    </motion.div>
+
+                    {/* Rear Left */}
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ type: 'spring', stiffness: 200, delay: 0.3 }}
+                      className="absolute"
+                      style={{ bottom: '4%', left: '0%' }}
+                    >
+                      <motion.div {...redPulse(0.2)} className="bg-red-950/70 border border-red-500 rounded-xl flex items-center gap-2" style={{ padding: '1vh 1.5vw' }}>
+                        <AlertTriangle style={{ width: '2.5vw', height: '2.5vw' }} className="text-red-500" />
+                        <div className="text-left">
+                          <div className="flex items-center gap-1 mb-0.5">
+                            <span className="bg-red-500 text-white rounded font-bold" style={{ fontSize: '1vw', padding: '0.1vh 0.6vw' }}>LOW</span>
+                            <span style={{ fontSize: '1.3vw', letterSpacing: '0.2em' }} className="font-bold text-red-400 uppercase">Rear Left</span>
+                          </div>
+                          <p style={{ fontSize: '2.2vw' }} className="font-black text-white">3/32"</p>
+                        </div>
+                      </motion.div>
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
         </motion.div>
       </div>
 
@@ -339,13 +349,9 @@ function SceneInsight() {
       <motion.div initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6, delay: 0.8 }} className="mt-8">
         <p style={{ fontSize: '4vw' }} className="text-slate-400 text-center font-light">since your last wash</p>
       </motion.div>
-      <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, delay: 1.5 }} className="mt-6">
-        <p style={{ fontSize: '3.5vw' }} className="text-white font-medium text-center">
-          Time for a{' '}
-          <span className="text-[#FF6900] font-black" style={{ borderBottom: '3px solid #FF6900', paddingBottom: '2px' }}>
-            Ceramic Shield
-          </span>
-        </p>
+      <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, delay: 1.5 }} className="mt-10 text-center">
+        <p style={{ fontSize: '5vw' }} className="text-white font-medium leading-tight">Time for a</p>
+        <p style={{ fontSize: '8.5vw', lineHeight: 1.05 }} className="text-[#FF6900] font-black mt-2">Ceramic Shield</p>
       </motion.div>
     </motion.div>
   );
@@ -356,7 +362,7 @@ function SceneSavings() {
   return (
     <motion.div {...crossfade} className="absolute inset-0 flex flex-col items-center justify-center">
       <motion.div initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6, delay: 0.2 }}>
-        <p style={{ fontSize: '5vw' }} className="text-emerald-400 font-semibold uppercase tracking-[0.2em] text-center">You'd have saved</p>
+        <p style={{ fontSize: '4.5vw' }} className="text-emerald-400 font-semibold uppercase tracking-[0.2em] text-center">You'd have saved</p>
       </motion.div>
       <motion.div initial={{ scale: 0.3, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', stiffness: 40, damping: 10, delay: 0.4 }} className="text-center">
         <motion.p animate={{ scale: [1, 1.02, 1] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }} style={{ fontSize: '32vw', lineHeight: 0.9 }} className="font-black tracking-tighter">
@@ -364,8 +370,10 @@ function SceneSavings() {
           <span className="text-white">{count}</span>
         </motion.p>
       </motion.div>
-      <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6, delay: 1.2 }}>
-        <p style={{ fontSize: '4.5vw' }} className="text-emerald-300/70 font-medium text-center uppercase tracking-[0.3em]">In 90 days</p>
+      <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6, delay: 1.2 }} className="mt-4 text-center px-8">
+        <p style={{ fontSize: '4vw' }} className="text-emerald-300/90 font-medium leading-snug">
+          over 90 days <span className="text-white font-bold">as a member</span>
+        </p>
       </motion.div>
     </motion.div>
   );
